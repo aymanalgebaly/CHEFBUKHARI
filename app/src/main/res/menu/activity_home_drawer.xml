@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single" android:id="@+id/g_zero">
+        <item
+            android:id="@+id/home"
+            android:title="@string/home" />
+
+    </group>
+<group android:checkableBehavior="single" android:id="@+id/g_one">
+        <item
+            android:id="@+id/dashboard"
+            android:title="@string/dashboard" />
+
+    </group>
+
+    <group android:id="@+id/g_two" android:checkableBehavior="single">
+        <item
+            android:id="@+id/orders"
+            android:title="@string/orders"/>
+
+    </group>
+
+    <group android:checkableBehavior="single" android:id="@+id/g_three">
+
+        <item
+            android:id="@+id/fav"
+            android:title="@string/favorites" />
+
+    </group>
+
+    <group android:id="@+id/g_four" android:checkableBehavior="single">
+        <item
+            android:id="@+id/signin"
+            android:title="@string/sign_in" />
+
+    </group>
+
+    <group android:checkableBehavior="single" android:id="@+id/g_five">
+        <item
+            android:id="@+id/signup"
+            android:title="@string/sign_up" />
+
+    </group>
+
+    <group android:id="@+id/g_six" android:checkableBehavior="single">
+        <item
+            android:id="@+id/about"
+            android:title="@string/about_us" />
+
+    </group>
+
+    <group android:checkableBehavior="single" android:id="@+id/g_seven">
+        <item
+            android:id="@+id/terms"
+            android:title="@string/user_terms" />
+
+    </group>
+
+    <group android:id="@+id/g_eight" android:checkableBehavior="single">
+        <item
+            android:id="@+id/lan"
+            android:title="@string/change_language" />
+
+    </group>
+
+    <group android:checkableBehavior="single" android:id="@+id/g_nein">
+
+        <item
+            android:id="@+id/signout"
+            android:title="@string/sign_out" />
+    </group>
+
+</menu>

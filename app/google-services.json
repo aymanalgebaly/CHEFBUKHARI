@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "999446234596",
+    "firebase_url": "https://chefbukhari-3a8cf.firebaseio.com",
+    "project_id": "chefbukhari-3a8cf",
+    "storage_bucket": "chefbukhari-3a8cf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:999446234596:android:0597d8e3f01f4a62e373f1",
+        "android_client_info": {
+          "package_name": "com.compubase.chefbukhari"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "999446234596-cmqn7pr7qsv45nc8du8db8vcrbs072hj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1_F_1hr3-VHPNLJ0pm4DZ8mZo6h-ulWQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "999446234596-cmqn7pr7qsv45nc8du8db8vcrbs072hj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
