@@ -144,7 +144,7 @@ public class HomeFragment extends Fragment {
                     String slider = body.get(o).getSlider();
 
                     stringList.add(slider);
-                    
+
                     DefaultSliderView textSliderView = new DefaultSliderView(getActivity());
 
                     textSliderView
