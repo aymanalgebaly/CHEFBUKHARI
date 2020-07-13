@@ -25,6 +25,7 @@ import com.compubase.chefbukhari.helpers.RetrofitClient;
 import com.compubase.chefbukhari.models.CartModel;
 import com.compubase.chefbukhari.models.CategoriesModel;
 import com.compubase.chefbukhari.models.ProductsModel;
+import com.compubase.chefbukhari.models.SliderModel;
 import com.compubase.chefbukhari.ui.activities.HomeActivity;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
@@ -78,6 +79,9 @@ public class HomeFragment extends Fragment {
     private ProductsModel productsModelsList;
     private String string;
 
+    List<String>stringList = new ArrayList<>();
+
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -115,6 +119,7 @@ public class HomeFragment extends Fragment {
         setupRecyclerTopRated();
         fetchData();
         fetchDataTopRated();
+        fetchSlider();
 
 //        realm.executeTransaction(new Realm.Transaction() {
 //            @Override
@@ -127,6 +132,51 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+    private void fetchSlider() {
+        RetrofitClient.getInstant().create(API.class).slider().enqueue(new Callback<List<SliderModel>>() {
+            @Override
+            public void onResponse(Call<List<SliderModel>> call, Response<List<SliderModel>> response) {
+                List<SliderModel> body = response.body();
+
+                assert body != null;
+                for (int o = 0; o < body.size(); o++) {
+
+                    String slider = body.get(o).getSlider();
+
+                    stringList.add(slider);
+                    
+                    DefaultSliderView textSliderView = new DefaultSliderView(getActivity());
+
+                    textSliderView
+                            .description("")
+                            .image(stringList.get(o))
+                            .setScaleType(BaseSliderView.ScaleType.Fit);
+                    textSliderView.bundle(new Bundle());
+                    textSliderView.getBundle()
+                            .putString("extra", "slider");
+                    if (null != mainSlider) {
+                        mainSlider.addSlider(textSliderView);
+                        mainSlider.setPresetTransformer(SliderLayout.Transformer.Accordion);
+                        mainSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+                        mainSlider.setCustomAnimation(new DescriptionAnimation());
+                        mainSlider.setDuration(6000);
+                        mainSlider.moveNextPosition();
+                        mainSlider.startAutoCycle();
+//                                    mainSlider.setCustomIndicator(indicators);
+
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<SliderModel>> call, Throwable t) {
+
+            }
+        });
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -134,6 +184,8 @@ public class HomeFragment extends Fragment {
 //        fetchData();
 //        fetchDataTopRated();
     }
+
+
 
     private void fetchData() {
 
@@ -162,34 +214,8 @@ public class HomeFragment extends Fragment {
 
                             img = categoriesModels.get(i).getImg();
 
-                            Log.i("onResponse: ", img);
+//                            Log.i("onResponse: ", img);
 
-                            List<String> imagsList = new ArrayList<>();
-                            imagsList.add(img);
-
-                            for (int o = 0; o < imagsList.size(); o++) {
-
-                                DefaultSliderView textSliderView = new DefaultSliderView(getActivity());
-                                textSliderView
-                                        .description("")
-                                        .image(imagsList.get(o))
-                                        .setScaleType(BaseSliderView.ScaleType.Fit);
-                                textSliderView.bundle(new Bundle());
-                                textSliderView.getBundle()
-                                        .putString("extra", "slider");
-                                if (null != mainSlider) {
-                                    mainSlider.addSlider(textSliderView);
-                                    mainSlider.setPresetTransformer(SliderLayout.Transformer.Accordion);
-                                    mainSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
-                                    mainSlider.setCustomAnimation(new DescriptionAnimation());
-                                    mainSlider.setDuration(6000);
-                                    mainSlider.moveNextPosition();
-                                    mainSlider.startAutoCycle();
-//                                    mainSlider.setCustomIndicator(indicators);
-
-                                }
-
-                            }
 
                             categoryResponse = new CategoriesModel();
 
@@ -281,9 +307,11 @@ public class HomeFragment extends Fragment {
                     productsModelsList.setTitleEn(body.get(j).getTitleEn());
                     productsModelsList.setId(body.get(j).getId());
                     productsModelsList.setPrice(body.get(j).getPrice());
-//                            productsModelsList.setPriceDiscount(body.get(j).getPriceDiscount());
                     productsModelsList.setRate(body.get(j).getRate());
                     productsModelsList.setIsfav(body.get(j).getIsfav());
+                    productsModelsList.setPriceDiscount(body.get(j).getPriceDiscount());
+
+
 
                     productsModelArrayList.add(productsModelsList);
                 }

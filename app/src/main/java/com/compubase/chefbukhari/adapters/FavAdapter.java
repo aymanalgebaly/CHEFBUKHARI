@@ -59,6 +59,9 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
 
         final FavouritesResponse productsModel = favouritesResponses.get(i);
 
+
+        viewHolder.txt_discount.setText(String.valueOf(productsModel.getPriceDiscount()));
+
         viewHolder.heart.setBackgroundResource(R.drawable.red_heart);
 
         String priceDiscount = productsModel.getPriceDiscount();

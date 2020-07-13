@@ -11,7 +11,16 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.DrawableImageViewTarget;
 import com.compubase.chefbukhari.R;
+
+import java.io.IOException;
+
+import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageView;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -46,10 +55,13 @@ public class SplashActivity extends AppCompatActivity {
                 }
 
             }
-        }, 2000);
+        }, 5000);
 
         ImageView imageView = findViewById(R.id.img_splash);
-        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.anim);
-        imageView.setAnimation(animation);
+
+        Glide.with(getApplicationContext()).asGif().load(R.drawable.splash_new).into(imageView);
+
+//        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.anim);
+//        imageView.setAnimation(animation);
     }
 }

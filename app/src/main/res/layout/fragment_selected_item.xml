@@ -223,6 +223,7 @@
                 android:layout_height="8dp"
                 android:layout_gravity="center_vertical"
                 android:id="@+id/img_min"
+                android:padding="8dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/min"/>
 
@@ -247,8 +248,10 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:id="@+id/img_plus"
+                android:padding="8dp"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/plus"/>
+
         </LinearLayout>
 
         <Button

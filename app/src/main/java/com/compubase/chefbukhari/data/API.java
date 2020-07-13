@@ -5,6 +5,7 @@ import com.compubase.chefbukhari.models.FavouritesResponse;
 import com.compubase.chefbukhari.models.OrdersDetailsResponse;
 import com.compubase.chefbukhari.models.OrdersResponse;
 import com.compubase.chefbukhari.models.ProductsModel;
+import com.compubase.chefbukhari.models.SliderModel;
 
 import java.util.List;
 
@@ -108,4 +109,7 @@ public interface API {
             @Field("category") String category,
             @Field("id_user") String id_user
     );
+
+    @GET("select_slider")
+    Call<List<SliderModel>>slider();
 }

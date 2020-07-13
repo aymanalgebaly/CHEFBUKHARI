@@ -81,6 +81,8 @@ public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.ViewHo
 
         final ProductsModel productsModel = productsResponseList.get(i);
 
+        viewHolder.txt_discount.setText(String.valueOf(productsModel.getPriceDiscount()));
+
 
         id_pro = productsResponseList.get(i).getId();
 

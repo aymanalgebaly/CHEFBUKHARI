@@ -47,6 +47,17 @@ public class ProductsModel extends RealmObject {
     @SerializedName("isfav")
     @Expose
     private String isfav;
+    @SerializedName("price_discount")
+    @Expose
+    private String priceDiscount;
+
+    public String getPriceDiscount() {
+        return priceDiscount;
+    }
+
+    public void setPriceDiscount(String priceDiscount) {
+        this.priceDiscount = priceDiscount;
+    }
 
     public Integer getId() {
         return id;
