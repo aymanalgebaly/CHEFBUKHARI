@@ -45,10 +45,11 @@ public class AgentDashboardAdapter extends RecyclerView.Adapter<AgentDashboardAd
 
         OrdersAgentResponse ordersResponse = ordersAgentResponses.get(position);
 
+
         holder.date.setText(ordersResponse.getDatee());
-        holder.order_num.setText(ordersResponse.getId());
+        holder.order_num.setText(String.valueOf(ordersResponse.getId()));
         holder.time.setText(ordersResponse.getTimee());
-        holder.code.setText(ordersResponse.getDeliverCode());
+        holder.code.setText(String.valueOf(ordersResponse.getDeliverCode()));
         holder.branch.setText(ordersResponse.getBranch());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

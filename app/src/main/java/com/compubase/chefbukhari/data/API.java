@@ -2,6 +2,7 @@ package com.compubase.chefbukhari.data;
 
 import com.compubase.chefbukhari.models.CategoriesProResponse;
 import com.compubase.chefbukhari.models.FavouritesResponse;
+import com.compubase.chefbukhari.models.OrdersAgentResponse;
 import com.compubase.chefbukhari.models.OrdersDetailsResponse;
 import com.compubase.chefbukhari.models.OrdersResponse;
 import com.compubase.chefbukhari.models.ProductsModel;
@@ -63,6 +64,10 @@ public interface API {
     @FormUrlEncoded
     @POST("select_all_product")
     Call<List<ProductsModel>>viewProducts(@Field("id_user") String id_user);
+
+    @FormUrlEncoded
+    @POST("selecte_all_orders_by_agent")
+    Call<List<OrdersAgentResponse>>getAgentOreders(@Field("id_user") String id_user);
 
     @FormUrlEncoded
     @POST("insert_fav")

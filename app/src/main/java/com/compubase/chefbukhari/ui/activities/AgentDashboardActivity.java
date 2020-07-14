@@ -144,13 +144,16 @@ public class AgentDashboardActivity extends AppCompatActivity {
                 finish();            }
         });
 
+
+
         txtOrders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                txtOrders.setBackgroundResource(R.color.error);
+                txtOrders.setTextColor(getResources().getColor(R.color.error));
+//                txtOrders.setBackgroundResource(R.color.error);
                 viewTwo.setBackgroundResource(R.color.error);
-                txtUserData.setBackgroundResource(R.color.gray_dark);
-                viewTwo.setBackgroundResource(R.color.gray_dark);
+                txtUserData.setTextColor(getResources().getColor(R.color.gray_dark));
+                viewOne.setBackgroundResource(R.color.gray_dark);
                 linUserData.setVisibility(View.GONE);
                 linOrders.setVisibility(View.VISIBLE);
                 setupRecycler();
@@ -161,14 +164,41 @@ public class AgentDashboardActivity extends AppCompatActivity {
         txtUserData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                txtUserData.setBackgroundResource(R.color.error);
-                txtOrders.setBackgroundResource(R.color.gray_dark);
+                txtUserData.setTextColor(getResources().getColor(R.color.error));
+//                txtUserData.setBackgroundResource(R.color.error);
+                txtOrders.setTextColor(getResources().getColor(R.color.gray_dark));
                 viewOne.setBackgroundResource(R.color.error);
                 viewTwo.setBackgroundResource(R.color.gray_dark);
                 linOrders.setVisibility(View.GONE);
                 linUserData.setVisibility(View.VISIBLE);
             }
         });
+
+//        txtOrders.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                txtOrders.setBackgroundResource(R.color.error);
+//                viewTwo.setBackgroundResource(R.color.error);
+//                txtUserData.setBackgroundResource(R.color.gray_dark);
+//                viewTwo.setBackgroundResource(R.color.gray_dark);
+//                linUserData.setVisibility(View.GONE);
+//                linOrders.setVisibility(View.VISIBLE);
+//                setupRecycler();
+//                fetchData();
+//            }
+//        });
+//
+//        txtUserData.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                txtUserData.setBackgroundResource(R.color.error);
+//                txtOrders.setBackgroundResource(R.color.gray_dark);
+//                viewOne.setBackgroundResource(R.color.error);
+//                viewTwo.setBackgroundResource(R.color.gray_dark);
+//                linOrders.setVisibility(View.GONE);
+//                linUserData.setVisibility(View.VISIBLE);
+//            }
+//        });
 
         imgUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -188,27 +218,39 @@ public class AgentDashboardActivity extends AppCompatActivity {
 
         ordersResponseArrayList.clear();
 
-        RetrofitClient.getInstant().create(API.class).selecte_all_category().enqueue(new Callback<ResponseBody>() {
+        RetrofitClient.getInstant().create(API.class).getAgentOreders(id).enqueue(new Callback<List<OrdersAgentResponse>>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<List<OrdersAgentResponse>> call, Response<List<OrdersAgentResponse>> response) {
 
-                GsonBuilder builder = new GsonBuilder();
-                Gson gson = builder.create();
+//                GsonBuilder builder = new GsonBuilder();
+//                Gson gson = builder.create();
+//
+//                try {
+//                    assert response.body() != null;
+//                    List<OrdersAgentResponse> categoriesModels =
+//                            Arrays.asList(gson.fromJson(response.body().string(), OrdersAgentResponse[].class));
 
-                try {
-                    assert response.body() != null;
-                    List<OrdersAgentResponse> categoriesModels =
-                            Arrays.asList(gson.fromJson(response.body().string(), OrdersAgentResponse[].class));
+                List<OrdersAgentResponse> body = response.body();
 
-                    if (response.isSuccessful()) {
+                if (response.isSuccessful()) {
 
-                        for (int i = 0; i < categoriesModels.size(); i++) {
+                        for (int i = 0; i < body.size(); i++) {
 
 
                             ordersResponse = new OrdersAgentResponse();
 
-                            ordersResponse.setDatee(categoriesModels.get(i).getDatee());
-                            ordersResponse.setId(categoriesModels.get(i).getId());
+                            ordersResponse.setDatee(body.get(i).getDatee());
+                            ordersResponse.setId(body.get(i).getId());
+                            ordersResponse.setAddress(body.get(i).getAddress());
+                            ordersResponse.setArea(body.get(i).getArea());
+                            ordersResponse.setBranch(body.get(i).getBranch());
+                            ordersResponse.setCoponCode(body.get(i).getCoponCode());
+                            ordersResponse.setCity(body.get(i).getCity());
+                            ordersResponse.setDeliverCode(body.get(i).getDeliverCode());
+                            ordersResponse.setIdProduct(body.get(i).getIdProduct());
+                            ordersResponse.setTimee(body.get(i).getTimee());
+                            ordersResponse.setSitelan(body.get(i).getSitelan());
+                            ordersResponse.setSitelon(body.get(i).getSitelon());
 
                             ordersResponseArrayList.add(ordersResponse);
 
@@ -221,14 +263,10 @@ public class AgentDashboardActivity extends AppCompatActivity {
                     ordersDashboardAdapter.notifyDataSetChanged();
 
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<List<OrdersAgentResponse>> call, Throwable t) {
                 Toast.makeText(AgentDashboardActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
 
                 Log.i("onFailure: ", t.getMessage());

@@ -129,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             if (type.equals("agent")){
 
-                                sharedLogin();
+                                sharedLoginAgent();
 
                                 startActivity(new Intent(LoginActivity.this, AgentDashboardActivity.class));
 
@@ -170,6 +170,23 @@ public class LoginActivity extends AppCompatActivity {
         preferences = getSharedPreferences("user", MODE_PRIVATE);
 
         editor.putBoolean("login", true);
+
+        editor.putString("id", String.valueOf(id));
+        editor.putString("name", name);
+        editor.putString("email", email);
+        editor.putString("phone", phone);
+        editor.putString("image", img);
+        editor.putString("city", city);
+        editor.putString("area", area);
+        editor.putString("type", type);
+
+        editor.apply();
+    }
+
+    private void sharedLoginAgent() {
+        SharedPreferences.Editor editor = getSharedPreferences("user", MODE_PRIVATE).edit();
+
+        preferences = getSharedPreferences("user", MODE_PRIVATE);
 
         editor.putString("id", String.valueOf(id));
         editor.putString("name", name);
