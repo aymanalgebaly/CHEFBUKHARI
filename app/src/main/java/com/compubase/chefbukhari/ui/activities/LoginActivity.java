@@ -188,6 +188,8 @@ public class LoginActivity extends AppCompatActivity {
 
         preferences = getSharedPreferences("user", MODE_PRIVATE);
 
+        editor.putBoolean("login_agent", true);
+
         editor.putString("id", String.valueOf(id));
         editor.putString("name", name);
         editor.putString("email", email);

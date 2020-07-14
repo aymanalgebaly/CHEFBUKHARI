@@ -251,6 +251,7 @@ public class AgentDashboardActivity extends AppCompatActivity {
                             ordersResponse.setTimee(body.get(i).getTimee());
                             ordersResponse.setSitelan(body.get(i).getSitelan());
                             ordersResponse.setSitelon(body.get(i).getSitelon());
+                            ordersResponse.setIdUser(body.get(i).getIdUser());
 
                             ordersResponseArrayList.add(ordersResponse);
 
@@ -390,7 +391,7 @@ public class AgentDashboardActivity extends AppCompatActivity {
 
         preferences = getSharedPreferences("user", MODE_PRIVATE);
 
-        editor.putBoolean("login", false);
+        editor.putBoolean("login_agent", false);
 
         editor.apply();
         startActivity(new Intent(AgentDashboardActivity.this, MainActivity.class));

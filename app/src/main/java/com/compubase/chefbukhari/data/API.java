@@ -2,11 +2,13 @@ package com.compubase.chefbukhari.data;
 
 import com.compubase.chefbukhari.models.CategoriesProResponse;
 import com.compubase.chefbukhari.models.FavouritesResponse;
+import com.compubase.chefbukhari.models.OrderDetails;
 import com.compubase.chefbukhari.models.OrdersAgentResponse;
 import com.compubase.chefbukhari.models.OrdersDetailsResponse;
 import com.compubase.chefbukhari.models.OrdersResponse;
 import com.compubase.chefbukhari.models.ProductsModel;
 import com.compubase.chefbukhari.models.SliderModel;
+import com.compubase.chefbukhari.models.UserDatum;
 
 import java.util.List;
 
@@ -37,6 +39,11 @@ public interface API {
             @Field("email") String email,
             @Field("pass") String pass
     );
+
+    @FormUrlEncoded
+    @POST("selecte_all_order_details")
+    Call<ResponseBody>orderDetails(
+            @Field("id_order") int id_order);
 
     @FormUrlEncoded
     @POST("insert_copoun_code")
@@ -76,6 +83,8 @@ public interface API {
             @Field("id_product") String id_product
     );
 
+
+
     @FormUrlEncoded
     @POST("selecte_all_fav")
     Call<List<FavouritesResponse>>selectFave(
@@ -106,6 +115,12 @@ public interface API {
     @POST("selecte_all_product_of_orders")
     Call<List<OrdersDetailsResponse>>selecte_all_product_of_orders(
             @Field("id_order") String id_order
+    );
+
+    @FormUrlEncoded
+    @POST("user_profile")
+    Call<ResponseBody>user_profile(
+            @Field("id_user") String id_user
     );
 
     @FormUrlEncoded

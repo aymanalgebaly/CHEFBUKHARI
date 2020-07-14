@@ -1,5 +1,6 @@
 package com.compubase.chefbukhari.ui.activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,6 +50,7 @@ public class SendDeliveryCodeAgentActivity extends AppCompatActivity {
     private OrdersAgentResponse agent;
     private String branch,deliverCode,datee,timee;
     private int id;
+    private Integer idUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,9 @@ public class SendDeliveryCodeAgentActivity extends AppCompatActivity {
         datee = agent.getDatee();
         timee = agent.getTimee();
         id = agent.getId();
+        idUser = agent.getIdUser();
+
+        Log.i( "onCreate: ", String.valueOf(idUser));
 
 
         if (string.equals("ar")) {
@@ -95,8 +100,14 @@ public class SendDeliveryCodeAgentActivity extends AppCompatActivity {
                 sendDeliveryCode();
                 break;
             case R.id.btn_viewOrder:
+                Intent intent = new Intent(SendDeliveryCodeAgentActivity.this,OrderDetailsActivity.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
                 break;
             case R.id.btn_client:
+                Intent intent1 = new Intent(SendDeliveryCodeAgentActivity.this,ClientActivity.class);
+                intent1.putExtra("id_user",idUser);
+                startActivity(intent1);
                 break;
         }
     }

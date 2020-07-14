@@ -26,6 +26,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private SharedPreferences preferences;
     private boolean login_user;
+    private boolean login_agent;
 
 
     @Override
@@ -37,17 +38,24 @@ public class SplashActivity extends AppCompatActivity {
 
         preferences = getSharedPreferences("user", MODE_PRIVATE);
         login_user = preferences.getBoolean("login", false);
+        login_agent = preferences.getBoolean("login_agent", false);
 
         /* Create an Intent that will start the Menu-Activity. */
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
                 /* Create an Intent that will start the Menu-Activity. */
+
+
+
                 if (login_user){
 
                     startActivity(new Intent(SplashActivity.this,HomeActivity.class));
                     finish();
 
+                } else if (login_agent){
+                    startActivity(new Intent(SplashActivity.this,AgentDashboardActivity.class));
+                    finish();
                 }else {
                     startActivity(new Intent(SplashActivity.this,LangActivity.class));
                     finish();
@@ -55,7 +63,7 @@ public class SplashActivity extends AppCompatActivity {
                 }
 
             }
-        }, 2500);
+        }, 3000);
 
         ImageView imageView = findViewById(R.id.img_splash);
 
