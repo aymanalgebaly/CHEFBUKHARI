@@ -98,6 +98,8 @@
     <string name="cart_empty">Cart Empty</string>
     <string name="home">Home</string>
     <string name="added_to_favourite">Added to Favourite</string>
+    <string name="delivery_code_sent">Delivery Code Sent</string>
+    <string name="delivery_code_did_not_sent">Delivery Code Didn\'t Sent</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

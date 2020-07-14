@@ -55,7 +55,7 @@ public class SplashActivity extends AppCompatActivity {
                 }
 
             }
-        }, 5000);
+        }, 2500);
 
         ImageView imageView = findViewById(R.id.img_splash);
 

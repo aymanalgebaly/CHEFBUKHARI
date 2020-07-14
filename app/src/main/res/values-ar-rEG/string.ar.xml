@@ -97,6 +97,8 @@
     <string name="please_sign_in_first">من فضلك قم بتسجيل الدخول اولا</string>
     <string name="cart_empty">السلة فارغه</string>
     <string name="home">الرئيسية</string>
+    <string name="delivery_code_sent">تم ارسال كود التوصيل</string>
+    <string name="delivery_code_did_not_sent">لم يتم ارسال كود التوصيل</string>
 
 
 </resources>

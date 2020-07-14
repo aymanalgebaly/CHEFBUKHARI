@@ -2,6 +2,7 @@ package com.compubase.chefbukhari.ui.activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -86,6 +87,7 @@ public class SendDeliveryCodeAgentActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_back:
+                onBackPressed();
                 break;
             case R.id.img_back_ar:
                 break;
@@ -100,6 +102,9 @@ public class SendDeliveryCodeAgentActivity extends AppCompatActivity {
     }
 
     private void sendDeliveryCode() {
+
+        Log.i( "sendDeliveryCode: ",deliverCode);
+        Log.i( "sendDeliveryCode: ", String.valueOf(id));
         RetrofitClient.getInstant().create(API.class).deliver_order(deliverCode, String.valueOf(id)).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -110,10 +115,10 @@ public class SendDeliveryCodeAgentActivity extends AppCompatActivity {
 
                     if (string.equals("True")){
 
-                        Toast.makeText(SendDeliveryCodeAgentActivity.this, "Delivery Code Sent", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SendDeliveryCodeAgentActivity.this, R.string.delivery_code_sent, Toast.LENGTH_LONG).show();
                     }else {
 
-                        Toast.makeText(SendDeliveryCodeAgentActivity.this, "Delivery Code Didn't Sent", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SendDeliveryCodeAgentActivity.this, R.string.delivery_code_did_not_sent, Toast.LENGTH_LONG).show();
 
                     }
 
