@@ -112,6 +112,7 @@ public class ClientLocationFragment extends Fragment implements OnMapReadyCallba
         string = preferences.getString("lan", "");
 
 
+        assert string != null;
         if (string.equals("ar")) {
             imgBackAr.setVisibility(View.VISIBLE);
         } else {

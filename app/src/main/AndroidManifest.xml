@@ -22,7 +22,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".ui.activities.ClientActivity"></activity>
+        <activity android:name=".ui.activities.ArrivalActivity"></activity>
+        <activity android:name=".ui.activities.ClientActivity" />
         <activity android:name=".ui.activities.OrderDetailsActivity" />
         <activity android:name=".ui.activities.SendDeliveryCodeAgentActivity" />
         <activity android:name=".ui.activities.LanTwoActivity" />

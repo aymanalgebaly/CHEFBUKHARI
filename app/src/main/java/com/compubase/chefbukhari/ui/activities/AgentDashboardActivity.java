@@ -252,6 +252,8 @@ public class AgentDashboardActivity extends AppCompatActivity {
                             ordersResponse.setSitelan(body.get(i).getSitelan());
                             ordersResponse.setSitelon(body.get(i).getSitelon());
                             ordersResponse.setIdUser(body.get(i).getIdUser());
+                            ordersResponse.setSitelon(body.get(i).getSitelon());
+                            ordersResponse.setSitelan(body.get(i).getSitelan());
 
                             ordersResponseArrayList.add(ordersResponse);
 
