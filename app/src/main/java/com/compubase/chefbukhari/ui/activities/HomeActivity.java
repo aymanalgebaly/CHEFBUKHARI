@@ -194,7 +194,7 @@ public class HomeActivity extends AppCompatActivity
 
             preferences = getSharedPreferences("user", MODE_PRIVATE);
 
-            editor.clear();
+//            editor.clear();
 
             editor.putBoolean("login", false);
 
