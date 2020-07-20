@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:textColor="@color/black"
+            android:id="@+id/txt_orderTilte"
             android:textStyle="bold"
             android:textSize="15sp"
             android:layout_centerHorizontal="true"
@@ -62,6 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/date"
+                android:id="@+id/txt_dateee"
                 android:layout_marginStart="16dp" />
 
             <TextView
@@ -84,6 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/time"
+                android:id="@+id/txt_timeee"
                 android:layout_marginStart="16dp">
 
             </TextView>
@@ -115,6 +118,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
+                android:id="@+id/txt_statussss"
                 android:layout_height="wrap_content"
                 android:text="@string/status"
                 android:layout_marginStart="16dp" />
@@ -139,6 +143,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/delivery_code"
+                android:id="@+id/txt_deliveryCode"
                 android:layout_marginStart="16dp">
 
             </TextView>

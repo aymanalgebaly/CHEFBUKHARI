@@ -4,6 +4,7 @@ package com.compubase.chefbukhari.ui.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,10 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import com.compubase.chefbukhari.R;
@@ -36,6 +39,18 @@ public class AboutFragment extends Fragment {
     ImageView imgBack;
     @BindView(R.id.img_back_ar)
     ImageView imgBackAr;
+    @BindView(R.id.txt_title)
+    TextView txtTitle;
+    @BindView(R.id.rel)
+    RelativeLayout rel;
+    @BindView(R.id.txt_des)
+    TextView txtDes;
+    @BindView(R.id.video)
+    VideoView video;
+    @BindView(R.id.txt_site)
+    TextView txtSite;
+    @BindView(R.id.txt_phone)
+    TextView txtPhone;
     private HomeActivity homeActivity;
     private SharedPreferences preferences;
     private String string;
@@ -53,7 +68,7 @@ public class AboutFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_about, container, false);
         homeActivity = (HomeActivity) getActivity();
-        unbinder = ButterKnife.bind(this,view);
+        unbinder = ButterKnife.bind(this, view);
 
         preferences = homeActivity.getSharedPreferences("user", Context.MODE_PRIVATE);
 
@@ -61,9 +76,25 @@ public class AboutFragment extends Fragment {
 
         if (string.equals("ar")) {
             imgBackAr.setVisibility(View.VISIBLE);
+
+            Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.hacen_dalal_st_regular);
+
+            txtDes.setTypeface(typeface);
+            txtPhone.setTypeface(typeface);
+            txtSite.setTypeface(typeface);
+            txtTitle.setTypeface(typeface);
+
         } else {
             imgBack.setVisibility(View.VISIBLE);
+
+            Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.century_gothic_400);
+
+            txtDes.setTypeface(typeface);
+            txtPhone.setTypeface(typeface);
+            txtSite.setTypeface(typeface);
+            txtTitle.setTypeface(typeface);
         }
+
 
         imgBackAr.setOnClickListener(new View.OnClickListener() {
             @Override

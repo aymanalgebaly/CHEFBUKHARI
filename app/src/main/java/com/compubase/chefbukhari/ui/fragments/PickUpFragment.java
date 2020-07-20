@@ -3,6 +3,7 @@ package com.compubase.chefbukhari.ui.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import com.compubase.chefbukhari.R;
@@ -50,6 +52,10 @@ public class PickUpFragment extends Fragment {
     Button btnCheckOut;
     @BindView(R.id.img_back_ar)
     ImageView imgBackAr;
+    @BindView(R.id.txt_title)
+    TextView txtTitle;
+    @BindView(R.id.txt_pick)
+    TextView txtPick;
 
     private Calendar myCalendar;
     private HomeActivity homeActivity;
@@ -84,8 +90,23 @@ public class PickUpFragment extends Fragment {
 
         if (string.equals("ar")) {
             imgBackAr.setVisibility(View.VISIBLE);
+
+            Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.hacen_dalal_st_regular);
+
+            btnCheckOut.setTypeface(typeface);
+            txtTime.setTypeface(typeface);
+            txtPick.setTypeface(typeface);
+            txtTitle.setTypeface(typeface);
+
         } else {
             imgBack.setVisibility(View.VISIBLE);
+
+            Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.century_gothic_400);
+
+            btnCheckOut.setTypeface(typeface);
+            txtTime.setTypeface(typeface);
+            txtPick.setTypeface(typeface);
+            txtTitle.setTypeface(typeface);
         }
 
         imgBackAr.setOnClickListener(new View.OnClickListener() {
@@ -138,16 +159,15 @@ public class PickUpFragment extends Fragment {
         districListEn.add("Dahrat Laban Area");
 
 
-        if (string.equals("ar")){
+        if (string.equals("ar")) {
 
             SpinnerUtils.SetSpinnerAdapter(homeActivity, spBranch, districList, android.R.layout.simple_spinner_item);
 
 
-        }else {
+        } else {
 
             SpinnerUtils.SetSpinnerAdapter(homeActivity, spBranch, districListEn, android.R.layout.simple_spinner_item);
         }
-
 
 
         spBranch.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

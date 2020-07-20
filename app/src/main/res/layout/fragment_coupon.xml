@@ -31,6 +31,7 @@
             android:layout_marginTop="2dp"
             android:textColor="@color/black"
             android:textStyle="bold"
+            android:id="@+id/txt_title"
             android:textSize="15sp"
             android:layout_centerHorizontal="true"
             android:text="@string/cart_shopping"/>
@@ -129,6 +130,7 @@
                     android:layout_height="40dp"
                     android:layout_weight="1.5"
                     android:text="@string/sum"
+                    android:id="@+id/txt_summm"
                     android:paddingStart="25dp"
                     android:paddingEnd="25dp"
                     android:gravity="center_vertical"
@@ -153,6 +155,7 @@
                     android:gravity="start|center_vertical"
                     android:textStyle="bold"
                     android:paddingStart="5dp"
+                    android:id="@+id/txt_srrr"
                     android:paddingEnd="5dp"
                     android:textColor="@color/black"
                     android:textSize="15sp"
@@ -178,6 +181,7 @@
                     android:layout_height="40dp"
                     android:layout_weight="1.5"
                     android:text="@string/delivery"
+                    android:id="@+id/txt_dliveryyyy"
                     android:paddingStart="25dp"
                     android:paddingEnd="25dp"
                     android:gravity="center_vertical"
@@ -201,6 +205,7 @@
                     android:layout_weight="0.4"
                     android:gravity="start|center_vertical"
                     android:textStyle="bold"
+                    android:id="@+id/txt_srr"
                     android:paddingStart="5dp"
                     android:paddingEnd="5dp"
                     android:textColor="@color/black"
@@ -227,6 +232,7 @@
                     android:layout_height="40dp"
                     android:layout_weight="1.5"
                     android:text="@string/total"
+                    android:id="@+id/txt_tooootal"
                     android:paddingStart="25dp"
                     android:paddingEnd="25dp"
                     android:gravity="center_vertical"
@@ -251,6 +257,7 @@
                     android:gravity="start|center_vertical"
                     android:textStyle="bold"
                     android:paddingStart="5dp"
+                    android:id="@+id/txt_sr"
                     android:paddingEnd="5dp"
                     android:textColor="@color/black"
                     android:textSize="15sp"
@@ -401,6 +408,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/made_credit_card"
                             android:textSize="16sp"
+                            android:id="@+id/txt_cridite"
                             android:layout_centerInParent="true"/>
 
                     </RelativeLayout>

@@ -2,6 +2,7 @@ package com.compubase.chefbukhari.adapters;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -50,12 +52,22 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
             holder.price.setText(cartModel.getItemPrice());
             holder.title.setText(cartModel.getTitle());
 
+            Typeface typeface = ResourcesCompat.getFont(context, R.font.hacen_dalal_st_regular);
+
+            holder.price.setTypeface(typeface);
+            holder.title.setTypeface(typeface);
+
         }else {
 
             holder.price.setText(cartModel.getItemPrice());
             holder.title.setText(cartModel.getTitleEn());
-        }
 
+            Typeface typeface = ResourcesCompat.getFont(context, R.font.century_gothic_400);
+
+            holder.price.setTypeface(typeface);
+            holder.title.setTypeface(typeface);
+
+        }
 
 
         Glide.with(context).load(cartModel.getImg1()).placeholder(R.drawable.inside_app_logo).into(holder.img);

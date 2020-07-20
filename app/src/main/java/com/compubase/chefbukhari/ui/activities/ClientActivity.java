@@ -1,5 +1,7 @@
 package com.compubase.chefbukhari.ui.activities;
 
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -7,12 +9,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.bumptech.glide.Glide;
 import com.compubase.chefbukhari.R;
 import com.compubase.chefbukhari.data.API;
 import com.compubase.chefbukhari.helpers.RetrofitClient;
-import com.compubase.chefbukhari.models.OrderDetails;
 import com.compubase.chefbukhari.models.UserDatum;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -40,7 +42,15 @@ public class ClientActivity extends AppCompatActivity {
     TextView edMobile;
     @BindView(R.id.lin_userData)
     LinearLayout linUserData;
+    @BindView(R.id.txt_name)
+    TextView txtName;
+    @BindView(R.id.txt_address)
+    TextView txtAddress;
+    @BindView(R.id.txt_num)
+    TextView txtNum;
     private int id_user;
+    private SharedPreferences preferences;
+    private String string;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +58,30 @@ public class ClientActivity extends AppCompatActivity {
         setContentView(R.layout.activity_client);
         ButterKnife.bind(this);
 
-        if (getIntent().getExtras() != null){
+        preferences = getSharedPreferences("user", MODE_PRIVATE);
+
+        string = preferences.getString("lan", "");
+
+        if (getIntent().getExtras() != null) {
             id_user = getIntent().getExtras().getInt("id_user");
 
-            Log.i( "onCreate: ", String.valueOf(id_user));
+            Log.i("onCreate: ", String.valueOf(id_user));
+        }
+
+        if (string.equals("ar")) {
+            Typeface typeface = ResourcesCompat.getFont(this, R.font.hacen_dalal_st_regular);
+
+            txtAddress.setTypeface(typeface);
+            txtName.setTypeface(typeface);
+            txtNum.setTypeface(typeface);
+
+        } else {
+
+            Typeface typeface = ResourcesCompat.getFont(this, R.font.century_gothic_400);
+
+            txtAddress.setTypeface(typeface);
+            txtName.setTypeface(typeface);
+            txtNum.setTypeface(typeface);
         }
 
         fetchData();

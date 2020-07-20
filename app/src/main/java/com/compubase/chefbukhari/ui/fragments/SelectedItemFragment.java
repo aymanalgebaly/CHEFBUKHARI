@@ -3,8 +3,8 @@ package com.compubase.chefbukhari.ui.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -17,6 +17,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import com.compubase.chefbukhari.R;
@@ -71,6 +72,12 @@ public class SelectedItemFragment extends Fragment {
     PagerIndicator customIndicator;
     @BindView(R.id.img_back_ar)
     ImageView imgBackAr;
+    @BindView(R.id.txt_sr)
+    TextView txtSr;
+    @BindView(R.id.txt_details)
+    TextView txtDetails;
+    @BindView(R.id.txt_extra)
+    TextView txtExtra;
     private int id;
     private String titlee, pricee, img1, img2, img3, isFave, priceDiscount, description, category, rate;
     private HomeActivity homeActivity;
@@ -100,8 +107,23 @@ public class SelectedItemFragment extends Fragment {
 
         if (string.equals("ar")) {
             imgBackAr.setVisibility(View.VISIBLE);
+
+            Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.hacen_dalal_st_regular);
+
+            txtDetails.setTypeface(typeface);
+            txtExtra.setTypeface(typeface);
+            txtSr.setTypeface(typeface);
+            btnAdd.setTypeface(typeface);
+
         } else {
             imgBack.setVisibility(View.VISIBLE);
+
+            Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.century_gothic_400);
+
+            txtDetails.setTypeface(typeface);
+            txtExtra.setTypeface(typeface);
+            txtSr.setTypeface(typeface);
+            btnAdd.setTypeface(typeface);
         }
 
         imgBackAr.setOnClickListener(new View.OnClickListener() {
@@ -131,7 +153,7 @@ public class SelectedItemFragment extends Fragment {
         desEn = getArguments().getString("desEn");
         titleEn = getArguments().getString("titleEn");
 
-        Log.i( "onBindViewHolder: ", String.valueOf(id));
+        Log.i("onBindViewHolder: ", String.valueOf(id));
 
 
         List<String> imagsList = new ArrayList<>();
@@ -227,7 +249,6 @@ public class SelectedItemFragment extends Fragment {
     }
 
 
-
     private void addItem() {
 
         String number_item = number.getText().toString();
@@ -266,7 +287,7 @@ public class SelectedItemFragment extends Fragment {
                 // Transaction was a success.
 
                 Toast.makeText(getActivity(), "data inserted", Toast.LENGTH_SHORT).show();
-                Log.i( "onBindViewHolder: ", String.valueOf(id));
+                Log.i("onBindViewHolder: ", String.valueOf(id));
 
 
                 RealmResults<CartModel> all = realm.where(CartModel.class).findAll();

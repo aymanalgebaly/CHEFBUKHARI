@@ -1,10 +1,14 @@
 package com.compubase.chefbukhari.ui.activities;
 
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.compubase.chefbukhari.R;
 import com.compubase.chefbukhari.models.OrdersAgentResponse;
@@ -35,6 +39,8 @@ public class ArrivalActivity extends AppCompatActivity implements OnMapReadyCall
     private String address;
     private String city, area;
     private float lat,longt;
+    private SharedPreferences preferences;
+    private String string;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,10 @@ public class ArrivalActivity extends AppCompatActivity implements OnMapReadyCall
         ButterKnife.bind(this);
         initMap(savedInstanceState, this);
 
+
+        preferences = getSharedPreferences("user", MODE_PRIVATE);
+
+        string = preferences.getString("lan", "");
 
         if (getIntent().getExtras() != null) {
 
@@ -63,6 +73,22 @@ public class ArrivalActivity extends AppCompatActivity implements OnMapReadyCall
         spCity.setText(city);
         spNeighborhood.setText(area);
         txtLocation.setText(address);
+
+        if (string.equals("ar")) {
+            Typeface typeface = ResourcesCompat.getFont(this,R.font.hacen_dalal_st_regular);
+
+            txtLocation.setTypeface(typeface);
+            spNeighborhood.setTypeface(typeface);
+            spCity.setTypeface(typeface);
+
+        } else {
+
+            Typeface typeface = ResourcesCompat.getFont(this,R.font.century_gothic_400);
+
+            txtLocation.setTypeface(typeface);
+            spNeighborhood.setTypeface(typeface);
+            spCity.setTypeface(typeface);
+        }
     }
 
     public void onMapReady(GoogleMap googleMap) {

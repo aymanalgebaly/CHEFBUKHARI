@@ -3,6 +3,7 @@ package com.compubase.chefbukhari.ui.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,8 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,6 +49,8 @@ public class FavoritesFragment extends Fragment {
     ImageView imgBack;
     @BindView(R.id.progress)
     ProgressBar progress;
+    @BindView(R.id.txt_title)
+    TextView txtTitle;
     private SharedPreferences preferences;
     private String id;
     private FavouritesResponse favModel;
@@ -76,8 +81,17 @@ public class FavoritesFragment extends Fragment {
 
         if (string.equals("ar")) {
             imgBackAr.setVisibility(View.VISIBLE);
+
+            Typeface typeface = ResourcesCompat.getFont(getContext(), R.font.hacen_dalal_st_regular);
+
+            txtTitle.setTypeface(typeface);
+
         } else {
             imgBack.setVisibility(View.VISIBLE);
+
+            Typeface typeface = ResourcesCompat.getFont(getContext(), R.font.century_gothic_400);
+
+            txtTitle.setTypeface(typeface);
         }
 
         imgBackAr.setOnClickListener(new View.OnClickListener() {

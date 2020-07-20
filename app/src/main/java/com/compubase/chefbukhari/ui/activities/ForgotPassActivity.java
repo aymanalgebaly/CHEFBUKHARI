@@ -2,6 +2,7 @@ package com.compubase.chefbukhari.ui.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -9,9 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.compubase.chefbukhari.R;
 import com.compubase.chefbukhari.data.API;
@@ -39,6 +42,8 @@ public class ForgotPassActivity extends AppCompatActivity {
     ProgressBar progressBar;
     @BindView(R.id.img_back_ar)
     ImageView imgBackAr;
+    @BindView(R.id.txt_address)
+    TextView txtAddress;
 
     private SharedPreferences preferences;
     private String string;
@@ -57,9 +62,19 @@ public class ForgotPassActivity extends AppCompatActivity {
         if (string.equals("ar")) {
             imgBackAr.setVisibility(View.VISIBLE);
             edMail.setTextDirection(View.TEXT_DIRECTION_RTL);
+            Typeface typeface = ResourcesCompat.getFont(this, R.font.hacen_dalal_st_regular);
+
+            txtAddress.setTypeface(typeface);
+            btnSignIn.setTypeface(typeface);
+
         } else {
             imgBack.setVisibility(View.VISIBLE);
             edMail.setTextDirection(View.TEXT_DIRECTION_LTR);
+
+            Typeface typeface = ResourcesCompat.getFont(this, R.font.century_gothic_400);
+
+            txtAddress.setTypeface(typeface);
+            btnSignIn.setTypeface(typeface);
         }
 
         imgBackAr.setOnClickListener(new View.OnClickListener() {

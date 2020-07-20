@@ -20,6 +20,7 @@
             android:layout_marginTop="2dp"
             android:textColor="@color/black"
             android:textSize="15sp"
+            android:id="@+id/txt_title"
             android:textStyle="bold"
             android:layout_centerHorizontal="true"
             android:text="@string/user_terms" />
@@ -67,6 +68,7 @@
         android:gravity="center_horizontal"
         android:text="@string/chef_bukhari_is_a_unique_experience_for_people_who_know_or_would_like_to_try_the_real_bukhari_foods_as_never_tried_before"
         android:textSize="16sp"
+        android:id="@+id/txt_one"
         android:textColor="@color/black"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
@@ -77,6 +79,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:textColor="@color/black"
+        android:id="@+id/txt_two"
         android:text="@string/chef_bukhari_is_a_unique_experience_for_people_who_know_or_would_like_to_try_the_real_bukhari_foods_as_never_tried_before"
         android:textSize="16sp"
         android:layout_marginStart="30dp"
@@ -90,6 +93,7 @@
         android:text="@string/chef_bukhari_is_a_unique_experience_for_people_who_know_or_would_like_to_try_the_real_bukhari_foods_as_never_tried_before"
         android:textSize="16sp"
         android:textColor="@color/black"
+        android:id="@+id/txt_three"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginTop="16sp"/>
@@ -102,6 +106,7 @@
         android:textSize="16sp"
         android:textColor="@color/black"
         android:layout_marginStart="30dp"
+        android:id="@+id/txt_foyr"
         android:layout_marginEnd="30dp"
         android:layout_marginTop="16sp"/>
 

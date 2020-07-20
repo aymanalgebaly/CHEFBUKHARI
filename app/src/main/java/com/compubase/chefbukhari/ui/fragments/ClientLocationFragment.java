@@ -5,6 +5,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Build;
@@ -21,6 +22,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import com.compubase.chefbukhari.R;
@@ -72,6 +74,16 @@ public class ClientLocationFragment extends Fragment implements OnMapReadyCallba
     MapView map;
     @BindView(R.id.img_back_ar)
     ImageView imgBackAr;
+    @BindView(R.id.txt_title)
+    TextView txtTitle;
+    @BindView(R.id.txt_locationnnnn)
+    TextView txtLocationnnnn;
+    @BindView(R.id.txt_cityyyy)
+    TextView txtCityyyy;
+    @BindView(R.id.txt_dist)
+    TextView txtDist;
+    @BindView(R.id.txt_map)
+    TextView txtMap;
 
 
     private HomeActivity homeActivity;
@@ -115,8 +127,27 @@ public class ClientLocationFragment extends Fragment implements OnMapReadyCallba
         assert string != null;
         if (string.equals("ar")) {
             imgBackAr.setVisibility(View.VISIBLE);
+
+            Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.hacen_dalal_st_regular);
+
+            txtCityyyy.setTypeface(typeface);
+            txtLocationnnnn.setTypeface(typeface);
+            txtDist.setTypeface(typeface);
+            txtMap.setTypeface(typeface);
+            txtTitle.setTypeface(typeface);
+            btnCheckOut.setTypeface(typeface);
+
         } else {
             imgBack.setVisibility(View.VISIBLE);
+
+            Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.century_gothic_400);
+
+            txtCityyyy.setTypeface(typeface);
+            txtLocationnnnn.setTypeface(typeface);
+            txtDist.setTypeface(typeface);
+            txtMap.setTypeface(typeface);
+            txtTitle.setTypeface(typeface);
+            btnCheckOut.setTypeface(typeface);
         }
 
         imgBackAr.setOnClickListener(new View.OnClickListener() {
@@ -128,7 +159,6 @@ public class ClientLocationFragment extends Fragment implements OnMapReadyCallba
 
         cityList.add("الرياض");
         cityListEn.add("Riyadh");
-
 
 
         districList.add("الوادي");
@@ -171,19 +201,17 @@ public class ClientLocationFragment extends Fragment implements OnMapReadyCallba
         districListEn.add("Dahrat Laban Area");
 
 
-        if (string.equals("ar")){
+        if (string.equals("ar")) {
 
             SpinnerUtils.SetSpinnerAdapter(homeActivity, spCity, cityList, android.R.layout.simple_spinner_item);
             SpinnerUtils.SetSpinnerAdapter(homeActivity, spNeighborhood, districList, android.R.layout.simple_spinner_item);
 
 
-        }else {
+        } else {
 
             SpinnerUtils.SetSpinnerAdapter(homeActivity, spCity, cityListEn, android.R.layout.simple_spinner_item);
             SpinnerUtils.SetSpinnerAdapter(homeActivity, spNeighborhood, districListEn, android.R.layout.simple_spinner_item);
         }
-
-
 
 
         spCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -200,7 +228,6 @@ public class ClientLocationFragment extends Fragment implements OnMapReadyCallba
 
             }
         });
-
 
 
         spNeighborhood.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -225,7 +252,6 @@ public class ClientLocationFragment extends Fragment implements OnMapReadyCallba
         SharedPrefManager.getInstance(homeActivity).saveSameGender(address);
 
         initMap(savedInstanceState, view);
-
 
 
         return view;
@@ -313,10 +339,10 @@ public class ClientLocationFragment extends Fragment implements OnMapReadyCallba
 
 
             lat = (float) location.latitude;
-            lon = (float)location.longitude;
+            lon = (float) location.longitude;
 
-            Log.i( "getCurrentLocation: ", String.valueOf(lat));
-            Log.i( "getCurrentLocation: ", String.valueOf(lon));
+            Log.i("getCurrentLocation: ", String.valueOf(lat));
+            Log.i("getCurrentLocation: ", String.valueOf(lon));
 
             addressFromLatlng = getAddressFromLatlng(new LatLng(location.latitude, location.longitude));
 
@@ -348,8 +374,6 @@ public class ClientLocationFragment extends Fragment implements OnMapReadyCallba
     }
 
 
-
-
     private void addMarker() {
         LatLng latLng = new LatLng(lat, lon);
 
@@ -368,7 +392,7 @@ public class ClientLocationFragment extends Fragment implements OnMapReadyCallba
 
         // Animating to the touched position
         mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,16f));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16f));
 
         // Placing a marker on the touched position
         mMap.addMarker(markerOptions);

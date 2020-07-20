@@ -3,6 +3,7 @@ package com.compubase.chefbukhari.ui.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -92,10 +94,15 @@ public class CategorySelectedFragment extends Fragment {
 
             fetchDataTopRated(name);
 
+            Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.hacen_dalal_st_regular);
+
+
         }else {
             fetchDataTopRated(nameEn);
-        }
 
+            Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.century_gothic_400);
+
+        }
 
         return view;
     }

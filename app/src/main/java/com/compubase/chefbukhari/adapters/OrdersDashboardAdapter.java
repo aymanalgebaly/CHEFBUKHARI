@@ -1,6 +1,8 @@
 package com.compubase.chefbukhari.adapters;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.compubase.chefbukhari.R;
@@ -22,6 +25,8 @@ public class OrdersDashboardAdapter extends RecyclerView.Adapter<OrdersDashboard
 
     private Context context;
     private ArrayList<OrdersResponse>responseArrayList;
+    private SharedPreferences preferences;
+    private String string;
 
     public OrdersDashboardAdapter(Context context) {
         this.context = context;
@@ -35,6 +40,8 @@ public class OrdersDashboardAdapter extends RecyclerView.Adapter<OrdersDashboard
     @Override
     public ViewHolderDash onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
+        preferences = context.getSharedPreferences("user",Context.MODE_PRIVATE);
+        string = preferences.getString("lan", "");
         View view = LayoutInflater.from(context).inflate(R.layout.order_dash_design, parent, false);
         return new ViewHolderDash(view);
     }
@@ -47,6 +54,23 @@ public class OrdersDashboardAdapter extends RecyclerView.Adapter<OrdersDashboard
         holder.date.setText(ordersResponse.getDatee());
         holder.order_num.setText(String.valueOf(ordersResponse.getId()));
         holder.order_id.setText(String.valueOf(ordersResponse.getId()));
+
+        if (string.equals("ar")) {
+
+            Typeface typeface = ResourcesCompat.getFont(context, R.font.hacen_dalal_st_regular);
+
+            holder.date.setTypeface(typeface);
+            holder.order_num.setTypeface(typeface);
+            holder.order_id.setTypeface(typeface);
+
+        } else {
+
+            Typeface typeface = ResourcesCompat.getFont(context, R.font.century_gothic_400);
+
+            holder.date.setTypeface(typeface);
+            holder.order_num.setTypeface(typeface);
+            holder.order_id.setTypeface(typeface);
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

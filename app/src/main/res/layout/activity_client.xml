@@ -38,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/user_name"
+            android:id="@+id/txt_name"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"/>
@@ -58,6 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/email_address"
+            android:id="@+id/txt_address"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"/>
@@ -78,6 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/mobile_number"
+            android:id="@+id/txt_num"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"/>

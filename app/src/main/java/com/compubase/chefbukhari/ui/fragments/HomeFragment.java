@@ -339,7 +339,7 @@ public class HomeFragment extends Fragment {
 
     private void setupRecyclerTopRated() {
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(homeActivity, 2);
+        LinearLayoutManager gridLayoutManager = new LinearLayoutManager(homeActivity);
         rcvTopRated.setLayoutManager(gridLayoutManager);
         rcvTopRated.setNestedScrollingEnabled(false);
 

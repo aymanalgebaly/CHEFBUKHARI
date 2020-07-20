@@ -20,6 +20,7 @@
             android:layout_marginTop="2dp"
             android:textColor="@color/black"
             android:textStyle="bold"
+            android:id="@+id/txt_title"
             android:textSize="15sp"
             android:layout_centerHorizontal="true"
             android:text="@string/cart_shopping"/>
@@ -59,6 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
+        android:id="@+id/txt_locationnnnn"
         android:layout_marginTop="50dp"
         android:text="@string/delivery_location"/>
 
@@ -85,6 +87,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/txt_cityyyy"
                 android:text="@string/city"
                 android:textColor="@color/gray_t"
                 android:layout_marginStart="40dp"
@@ -94,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/district"
-
+                android:id="@+id/txt_dist"
                 android:textColor="@color/gray_t"
                 android:layout_marginStart="60dp"
                 android:layout_marginEnd="40dp"/>
@@ -131,6 +134,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/location_map"
+            android:id="@+id/txt_map"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
             android:layout_marginTop="24dp"/>

@@ -1,5 +1,7 @@
 package com.compubase.chefbukhari.ui.activities;
 
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,11 +18,9 @@ import com.compubase.chefbukhari.R;
 import com.compubase.chefbukhari.adapters.DetailsAdapter;
 import com.compubase.chefbukhari.data.API;
 import com.compubase.chefbukhari.helpers.RetrofitClient;
-import com.compubase.chefbukhari.helpers.TinyDB;
 import com.compubase.chefbukhari.models.OrderDetails;
 import com.compubase.chefbukhari.models.OrdersDetailsResponse;
 import com.compubase.chefbukhari.models.OrdersResponse;
-import com.compubase.chefbukhari.models.RegisterResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -54,10 +55,22 @@ public class OrderDetailsActivity extends AppCompatActivity {
     TextView txtCode;
     @BindView(R.id.rcv_details)
     RecyclerView rcvDetails;
+    @BindView(R.id.txt_orderTilte)
+    TextView txtOrderTilte;
+    @BindView(R.id.txt_dateee)
+    TextView txtDateee;
+    @BindView(R.id.txt_timeee)
+    TextView txtTimeee;
+    @BindView(R.id.txt_statussss)
+    TextView txtStatussss;
+    @BindView(R.id.txt_deliveryCode)
+    TextView txtDeliveryCode;
     private int id;
     private List<OrdersDetailsResponse> body;
     private DetailsAdapter ordersDashboardAdapter;
     private ArrayList<OrdersResponse> ordersResponseArray = new ArrayList<>();
+    private SharedPreferences preferences;
+    private String string;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +78,33 @@ public class OrderDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order_details);
         ButterKnife.bind(this);
 
-        if (getIntent().getExtras() != null){
+        preferences = getSharedPreferences("user", MODE_PRIVATE);
+
+        string = preferences.getString("lan", "");
+
+        if (getIntent().getExtras() != null) {
             id = getIntent().getExtras().getInt("id");
+        }
+
+
+        if (string.equals("ar")) {
+            Typeface typeface = ResourcesCompat.getFont(this, R.font.hacen_dalal_st_regular);
+
+            txtDateee.setTypeface(typeface);
+            txtDeliveryCode.setTypeface(typeface);
+            txtOrderTilte.setTypeface(typeface);
+            txtTimeee.setTypeface(typeface);
+            txtStatussss.setTypeface(typeface);
+
+        } else {
+
+            Typeface typeface = ResourcesCompat.getFont(this, R.font.century_gothic_400);
+
+            txtDateee.setTypeface(typeface);
+            txtDeliveryCode.setTypeface(typeface);
+            txtOrderTilte.setTypeface(typeface);
+            txtTimeee.setTypeface(typeface);
+            txtStatussss.setTypeface(typeface);
         }
 
         fetchData();
@@ -80,7 +118,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<OrdersDetailsResponse>> call, Response<List<OrdersDetailsResponse>> response) {
 
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                     body = response.body();
 
@@ -129,10 +167,10 @@ public class OrderDetailsActivity extends AppCompatActivity {
                         String status = orderDetails.get(0).getStatus();
                         String timee = orderDetails.get(0).getTimee();
 
-                        Log.i( "onResponse: ",datee);
-                        Log.i( "onResponse: ",deliverCode);
-                        Log.i( "onResponse: ",status);
-                        Log.i( "onResponse: ",timee);
+                        Log.i("onResponse: ", datee);
+                        Log.i("onResponse: ", deliverCode);
+                        Log.i("onResponse: ", status);
+                        Log.i("onResponse: ", timee);
 
                         txtCode.setText(deliverCode);
                         txtDate.setText(datee);

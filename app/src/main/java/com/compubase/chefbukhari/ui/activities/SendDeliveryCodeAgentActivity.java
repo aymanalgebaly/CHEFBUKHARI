@@ -2,6 +2,7 @@ package com.compubase.chefbukhari.ui.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.compubase.chefbukhari.R;
 import com.compubase.chefbukhari.data.API;
@@ -47,8 +49,10 @@ public class SendDeliveryCodeAgentActivity extends AppCompatActivity {
     Button btnViewOrder;
     @BindView(R.id.btn_client)
     Button btnClient;
+    @BindView(R.id.txt_title)
+    TextView txtTitle;
     private OrdersAgentResponse agent;
-    private String branch,deliverCode,datee,timee;
+    private String branch, deliverCode, datee, timee;
     private int id;
     private Integer idUser;
 
@@ -58,8 +62,29 @@ public class SendDeliveryCodeAgentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_send_delivery_code_agent);
         ButterKnife.bind(this);
 
-        SharedPreferences preferences = getSharedPreferences("user",MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("user", MODE_PRIVATE);
         String string = preferences.getString("lan", "");
+
+        if (string.equals("ar")) {
+            Typeface typeface = ResourcesCompat.getFont(this, R.font.hacen_dalal_st_regular);
+
+            txtCoupon.setTypeface(typeface);
+            txtTitle.setTypeface(typeface);
+            btnClient.setTypeface(typeface);
+            btnCoupon.setTypeface(typeface);
+            btnViewOrder.setTypeface(typeface);
+
+        } else {
+
+            Typeface typeface = ResourcesCompat.getFont(this, R.font.century_gothic_400);
+
+            txtCoupon.setTypeface(typeface);
+            txtTitle.setTypeface(typeface);
+            btnClient.setTypeface(typeface);
+            btnCoupon.setTypeface(typeface);
+            btnViewOrder.setTypeface(typeface);
+
+        }
 
         agent = getIntent().getParcelableExtra("agent");
 
@@ -71,12 +96,12 @@ public class SendDeliveryCodeAgentActivity extends AppCompatActivity {
         id = agent.getId();
         idUser = agent.getIdUser();
 
-        Log.i( "onCreate: ", String.valueOf(idUser));
+        Log.i("onCreate: ", String.valueOf(idUser));
 
 
         if (string.equals("ar")) {
             imgBackAr.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             imgBack.setVisibility(View.VISIBLE);
         }
 
@@ -100,13 +125,13 @@ public class SendDeliveryCodeAgentActivity extends AppCompatActivity {
                 sendDeliveryCode();
                 break;
             case R.id.btn_viewOrder:
-                Intent intent = new Intent(SendDeliveryCodeAgentActivity.this,OrderDetailsActivity.class);
-                intent.putExtra("id",id);
+                Intent intent = new Intent(SendDeliveryCodeAgentActivity.this, OrderDetailsActivity.class);
+                intent.putExtra("id", id);
                 startActivity(intent);
                 break;
             case R.id.btn_client:
-                Intent intent1 = new Intent(SendDeliveryCodeAgentActivity.this,ClientActivity.class);
-                intent1.putExtra("id_user",idUser);
+                Intent intent1 = new Intent(SendDeliveryCodeAgentActivity.this, ClientActivity.class);
+                intent1.putExtra("id_user", idUser);
                 startActivity(intent1);
                 break;
         }
@@ -114,8 +139,8 @@ public class SendDeliveryCodeAgentActivity extends AppCompatActivity {
 
     private void sendDeliveryCode() {
 
-        Log.i( "sendDeliveryCode: ",deliverCode);
-        Log.i( "sendDeliveryCode: ", String.valueOf(id));
+        Log.i("sendDeliveryCode: ", deliverCode);
+        Log.i("sendDeliveryCode: ", String.valueOf(id));
         RetrofitClient.getInstant().create(API.class).deliver_order(deliverCode, String.valueOf(id)).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -124,10 +149,10 @@ public class SendDeliveryCodeAgentActivity extends AppCompatActivity {
                     assert response.body() != null;
                     String string = response.body().string();
 
-                    if (string.equals("True")){
+                    if (string.equals("True")) {
 
                         Toast.makeText(SendDeliveryCodeAgentActivity.this, R.string.delivery_code_sent, Toast.LENGTH_LONG).show();
-                    }else {
+                    } else {
 
                         Toast.makeText(SendDeliveryCodeAgentActivity.this, R.string.delivery_code_did_not_sent, Toast.LENGTH_LONG).show();
 

@@ -3,6 +3,7 @@ package com.compubase.chefbukhari.ui.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Layout;
 import android.text.SpannableString;
@@ -10,12 +11,14 @@ import android.text.style.AlignmentSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -55,6 +58,7 @@ public class HomeActivity extends AppCompatActivity
     private String string;
     private boolean login;
     private RealmResults<CartModel> all;
+    private NavigationView navigationView;
 
     @SuppressLint("CommitPrefEdits")
     @Override
@@ -78,8 +82,28 @@ public class HomeActivity extends AppCompatActivity
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
+
         Menu menu = navigationView.getMenu();
+
+        for (int i = 0; i <menu.size() ; i++) {
+
+            CharSequence title = menu.getItem(i).getTitle();
+
+            if (string.equals("ar")) {
+                Typeface typeface = ResourcesCompat.getFont(this,R.font.hacen_dalal_st_regular);
+
+                navigationView.setItemTextAppearance(R.style.NavigationText);
+
+            } else {
+
+                Typeface typeface = ResourcesCompat.getFont(this,R.font.century_gothic_400);
+
+                navigationView.setItemTextAppearance(R.style.NavigationText_en);
+
+            }
+
+        }
 
         if (login){
             menu.findItem(R.id.signin).setVisible(false);
@@ -115,6 +139,8 @@ public class HomeActivity extends AppCompatActivity
         cartBadge.setText(String.valueOf(all.size()));
 
         editor = getSharedPreferences("lan", MODE_PRIVATE).edit();
+
+
 
 
         HomeFragment homeFragment = new HomeFragment();

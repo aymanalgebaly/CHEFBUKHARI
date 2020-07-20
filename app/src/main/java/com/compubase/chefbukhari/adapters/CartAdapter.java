@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -102,12 +104,25 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolderCart
             viewHolderCart.title.setGravity(Gravity.START | Gravity.BOTTOM | Gravity.CENTER_VERTICAL);
             viewHolderCart.title.setText(cartModel.getTitle());
 
+            Typeface typeface = ResourcesCompat.getFont(context, R.font.hacen_dalal_st_regular);
+
+            viewHolderCart.price.setTypeface(typeface);
+            viewHolderCart.quntity.setTypeface(typeface);
+            viewHolderCart.title.setTypeface(typeface);
+
         }else {
             viewHolderCart.title.setGravity(Gravity.END | Gravity.BOTTOM | Gravity.CENTER_VERTICAL);
 
             viewHolderCart.title.setText(cartModel.getTitle());
 
+            Typeface typeface = ResourcesCompat.getFont(context, R.font.century_gothic_400);
+
+            viewHolderCart.price.setTypeface(typeface);
+            viewHolderCart.quntity.setTypeface(typeface);
+            viewHolderCart.title.setTypeface(typeface);
+
         }
+
 
         viewHolderCart.quntity.setText(cartModel.getItem_number());
         viewHolderCart.price.setText(String.valueOf(cartModel.getItem_price()));

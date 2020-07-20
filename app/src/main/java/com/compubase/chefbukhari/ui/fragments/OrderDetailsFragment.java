@@ -3,31 +3,27 @@ package com.compubase.chefbukhari.ui.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.compubase.chefbukhari.R;
 import com.compubase.chefbukhari.adapters.DetailsAdapter;
-import com.compubase.chefbukhari.adapters.OrdersDashboardAdapter;
 import com.compubase.chefbukhari.data.API;
 import com.compubase.chefbukhari.helpers.RetrofitClient;
 import com.compubase.chefbukhari.models.OrdersDetailsResponse;
 import com.compubase.chefbukhari.models.OrdersResponse;
 import com.compubase.chefbukhari.ui.activities.HomeActivity;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,16 +57,26 @@ public class OrderDetailsFragment extends Fragment {
     TextView txtCode;
     @BindView(R.id.rcv_details)
     RecyclerView rcvDetails;
+    @BindView(R.id.txt_title)
+    TextView txtTitle;
+    @BindView(R.id.txt_datteee)
+    TextView txtDatteee;
+    @BindView(R.id.txt_timmeeee)
+    TextView txtTimmeeee;
+    @BindView(R.id.txt_statuusss)
+    TextView txtStatuusss;
+    @BindView(R.id.txt_dliveryyyy)
+    TextView txtDliveryyyy;
     private HomeActivity homeActivity;
     private String string;
     private OrdersResponse orderResponse;
     private DetailsAdapter detailsAdapter;
-    private String deliverCode,status,timee,datee;
+    private String deliverCode, status, timee, datee;
 
     private Unbinder unbinder;
 
-    private ArrayList<OrdersResponse>ordersResponseArrayList = new ArrayList<>();
-    private ArrayList<OrdersResponse>ordersResponseArray = new ArrayList<>();
+    private ArrayList<OrdersResponse> ordersResponseArrayList = new ArrayList<>();
+    private ArrayList<OrdersResponse> ordersResponseArray = new ArrayList<>();
     private Integer id;
     private DetailsAdapter ordersDashboardAdapter;
     private List<OrdersDetailsResponse> body = new ArrayList<>();
@@ -86,7 +92,7 @@ public class OrderDetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_order_details, container, false);
         homeActivity = (HomeActivity) getActivity();
-        unbinder = ButterKnife.bind(this,view);
+        unbinder = ButterKnife.bind(this, view);
 
         SharedPreferences preferences = homeActivity.getSharedPreferences("user", Context.MODE_PRIVATE);
 
@@ -108,13 +114,33 @@ public class OrderDetailsFragment extends Fragment {
             txtDate.setText(String.valueOf(datee));
             txtStatus.setText(String.valueOf(status));
             txtTime.setText(String.valueOf(timee));
+
+            Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.hacen_dalal_st_regular);
+
+            txtDatteee.setTypeface(typeface);
+            txtDliveryyyy.setTypeface(typeface);
+            txtStatuusss.setTypeface(typeface);
+            txtTimmeeee.setTypeface(typeface);
+            txtTitle.setTypeface(typeface);
+
+
         } else {
             imgBack.setVisibility(View.VISIBLE);
             txtCode.setText(String.valueOf(deliverCode));
             txtDate.setText(String.valueOf(datee));
             txtStatus.setText(String.valueOf(status));
             txtTime.setText(String.valueOf(timee));
+
+            Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.century_gothic_400);
+
+            txtDatteee.setTypeface(typeface);
+            txtDliveryyyy.setTypeface(typeface);
+            txtStatuusss.setTypeface(typeface);
+            txtTimmeeee.setTypeface(typeface);
+            txtTitle.setTypeface(typeface);
+
         }
+
 
         imgBackAr.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,7 +157,6 @@ public class OrderDetailsFragment extends Fragment {
         });
 
 
-
         setupRecycler();
         fetchData();
 
@@ -144,7 +169,7 @@ public class OrderDetailsFragment extends Fragment {
             @Override
             public void onResponse(Call<List<OrdersDetailsResponse>> call, Response<List<OrdersDetailsResponse>> response) {
 
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                     body = response.body();
 
@@ -171,7 +196,6 @@ public class OrderDetailsFragment extends Fragment {
         rcvDetails.setLayoutManager(linearLayoutManager);
 
     }
-
 
 
     @Override

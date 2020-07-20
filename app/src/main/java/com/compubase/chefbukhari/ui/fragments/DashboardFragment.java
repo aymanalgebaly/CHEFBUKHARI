@@ -5,7 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,7 +38,6 @@ import com.compubase.chefbukhari.helpers.SharedPrefManager;
 import com.compubase.chefbukhari.helpers.SpinnerUtils;
 import com.compubase.chefbukhari.models.OrdersResponse;
 import com.compubase.chefbukhari.ui.activities.HomeActivity;
-import com.github.siyamed.shapeimageview.mask.PorterShapeImageView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
@@ -50,7 +50,6 @@ import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -111,6 +110,24 @@ public class DashboardFragment extends Fragment {
     LinearLayout linUserData;
     @BindView(R.id.img_back_ar)
     ImageView imgBackAr;
+    @BindView(R.id.txt_title)
+    TextView txtTitle;
+    @BindView(R.id.txt_one)
+    TextView txtOne;
+    @BindView(R.id.txt_two)
+    TextView txtTwo;
+    @BindView(R.id.txt_three)
+    TextView txtThree;
+    @BindView(R.id.txt_nameee)
+    TextView txtNameee;
+    @BindView(R.id.txt_numm)
+    TextView txtNumm;
+    @BindView(R.id.txt_addresss)
+    TextView txtAddresss;
+    @BindView(R.id.txt_cittyyy)
+    TextView txtCittyyy;
+    @BindView(R.id.txt_distttt)
+    TextView txtDistttt;
 
     private Unbinder unbinder;
     private HomeActivity homeActivity;
@@ -129,7 +146,7 @@ public class DashboardFragment extends Fragment {
     private String string;
     private List<String> cityList = new ArrayList<>();
     private List<String> districList = new ArrayList<>();
-    private String item_city,item_distric;
+    private String item_city, item_distric;
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -174,12 +191,44 @@ public class DashboardFragment extends Fragment {
             edUsername.setTextDirection(View.TEXT_DIRECTION_RTL);
             edMobile.setTextDirection(View.TEXT_DIRECTION_RTL);
             edMail.setTextDirection(View.TEXT_DIRECTION_RTL);
+
+            Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.hacen_dalal_st_regular);
+
+            txtAddresss.setTypeface(typeface);
+            txtCittyyy.setTypeface(typeface);
+            txtDistttt.setTypeface(typeface);
+            txtNameee.setTypeface(typeface);
+            txtNumm.setTypeface(typeface);
+            txtOne.setTypeface(typeface);
+            txtThree.setTypeface(typeface);
+            txtTitle.setTypeface(typeface);
+            txtTwo.setTypeface(typeface);
+            txtUserData.setTypeface(typeface);
+            txtOrders.setTypeface(typeface);
+            btnProf.setTypeface(typeface);
         } else {
             imgBack.setVisibility(View.VISIBLE);
             edUsername.setTextDirection(View.TEXT_DIRECTION_LTR);
             edMobile.setTextDirection(View.TEXT_DIRECTION_LTR);
             edMail.setTextDirection(View.TEXT_DIRECTION_LTR);
+
+            Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.century_gothic_400);
+
+            txtAddresss.setTypeface(typeface);
+            txtCittyyy.setTypeface(typeface);
+            txtDistttt.setTypeface(typeface);
+            txtNameee.setTypeface(typeface);
+            txtNumm.setTypeface(typeface);
+            txtOne.setTypeface(typeface);
+            txtThree.setTypeface(typeface);
+            txtTitle.setTypeface(typeface);
+            txtTwo.setTypeface(typeface);
+            txtUserData.setTypeface(typeface);
+            txtOrders.setTypeface(typeface);
+            btnProf.setTypeface(typeface);
+
         }
+
 
         imgBackAr.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -215,7 +264,6 @@ public class DashboardFragment extends Fragment {
                 linUserData.setVisibility(View.VISIBLE);
             }
         });
-
 
 
         cityList.add("الرياض");
@@ -260,8 +308,6 @@ public class DashboardFragment extends Fragment {
 
             }
         });
-
-
 
 
         edMail.setText(email);
@@ -333,31 +379,31 @@ public class DashboardFragment extends Fragment {
                 Gson gson = builder.create();
 
 
-                    if (response.isSuccessful()) {
+                if (response.isSuccessful()) {
 
-                        List<OrdersResponse> body = response.body();
+                    List<OrdersResponse> body = response.body();
 
-                        for (int i = 0; i < body.size(); i++) {
+                    for (int i = 0; i < body.size(); i++) {
 
 
-                            ordersResponse = new OrdersResponse();
+                        ordersResponse = new OrdersResponse();
 
-                            ordersResponse.setDatee(body.get(i).getDatee());
-                            ordersResponse.setId(body.get(i).getId());
-                            ordersResponse.setTimee(body.get(i).getTimee());
-                            ordersResponse.setDeliverCode(body.get(i).getDeliverCode());
-                            ordersResponse.setIdProduct(body.get(i).getIdProduct());
-                            ordersResponse.setStatus(body.get(i).getStatus());
+                        ordersResponse.setDatee(body.get(i).getDatee());
+                        ordersResponse.setId(body.get(i).getId());
+                        ordersResponse.setTimee(body.get(i).getTimee());
+                        ordersResponse.setDeliverCode(body.get(i).getDeliverCode());
+                        ordersResponse.setIdProduct(body.get(i).getIdProduct());
+                        ordersResponse.setStatus(body.get(i).getStatus());
 
-                            ordersResponseArrayList.add(ordersResponse);
+                        ordersResponseArrayList.add(ordersResponse);
 
-                        }
                     }
+                }
 
-                    ordersDashboardAdapter = new OrdersDashboardAdapter(getActivity());
-                    rcvDashOrers.setAdapter(ordersDashboardAdapter);
-                    ordersDashboardAdapter.setData(ordersResponseArrayList);
-                    ordersDashboardAdapter.notifyDataSetChanged();
+                ordersDashboardAdapter = new OrdersDashboardAdapter(getActivity());
+                rcvDashOrers.setAdapter(ordersDashboardAdapter);
+                ordersDashboardAdapter.setData(ordersResponseArrayList);
+                ordersDashboardAdapter.notifyDataSetChanged();
 
 
             }
@@ -464,7 +510,7 @@ public class DashboardFragment extends Fragment {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Log.i( "onFailure: ",e.getMessage());
+                            Log.i("onFailure: ", e.getMessage());
                             Toast.makeText(homeActivity, "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
 
                         }

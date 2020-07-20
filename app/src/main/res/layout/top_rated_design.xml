@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="5dp"
-    app:cardElevation="22dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="10dp"
-    android:layout_margin="1dp"
-    android:id="@+id/card_top_rated">
+    android:layout_height="170dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="16dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="4dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginStart="8dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/pro_img"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginStart="1dp"/>
 
         <com.like.LikeButton
             app:icon_type="heart"
@@ -29,9 +28,9 @@
             app:icon_size="20dp"
             android:padding="2dp"
             android:id="@+id/like_button"
-            android:layout_centerVertical="true"
             android:layout_marginStart="2dp"
             app:anim_scale_factor="2"
+            android:layout_margin="8dp"
             android:layout_height="25dp"
             android:layout_width="25dp" />
 
@@ -40,9 +39,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_alignParentEnd="true"
-            android:layout_margin="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_centerVertical="true">
+            android:layout_margin="8dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -50,7 +47,7 @@
                 android:text="10"
                 android:textSize="12sp"
                 android:id="@+id/discount_txt"
-                android:textColor="@color/red_dark"/>
+                android:textColor="@color/white"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -58,76 +55,89 @@
                 android:text="%"
                 android:textSize="12sp"
                 android:layout_marginStart="2dp"
-                android:textColor="@color/red_dark"/>
+                android:textColor="@color/white"/>
         </LinearLayout>
-    </RelativeLayout>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:id="@+id/pro_img"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginStart="1dp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/pro_name"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:layout_gravity="center"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal">
-
-        <RatingBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:isIndicator="false"
-            android:id="@+id/rating"
-            style="@style/Widget.AppCompat.RatingBar.Small" />
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="8dp"
-                android:layout_centerVertical="true">
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="8dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="10"
-                    android:textSize="12sp"
-                    android:gravity="center_vertical"
-                    android:layout_gravity="center_vertical"
-                    android:id="@+id/price_txt"
-                    android:textColor="@color/black"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="@string/sr"
-                    android:textSize="12sp"
-                    android:gravity="center_vertical"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
                     android:textStyle="bold"
-                    android:textColor="@color/black"/>
+                    android:textSize="14sp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="4dp"
+                    android:paddingStart="8dp"
+                    android:paddingTop="4dp"
+                    android:id="@+id/pro_name"
+                    android:layout_marginTop="8dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="10"
+                        android:textSize="12sp"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:textStyle="bold"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
+                        android:id="@+id/price_txt"
+                        android:textColor="@color/black"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/sr"
+                        android:textSize="12sp"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="2dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
             </LinearLayout>
-        </RelativeLayout>
-    </LinearLayout>
-</LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="bottom"
+                android:orientation="vertical">
+
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="false"
+                    android:numStars="5"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="8dp"
+                    android:id="@+id/rating"
+                    style="@style/Widget.AppCompat.RatingBar.Small" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
 
-    </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

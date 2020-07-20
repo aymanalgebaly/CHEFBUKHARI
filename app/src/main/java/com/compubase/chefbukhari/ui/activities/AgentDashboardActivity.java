@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,7 +28,6 @@ import com.compubase.chefbukhari.adapters.AgentDashboardAdapter;
 import com.compubase.chefbukhari.data.API;
 import com.compubase.chefbukhari.helpers.RetrofitClient;
 import com.compubase.chefbukhari.models.OrdersAgentResponse;
-import com.github.siyamed.shapeimageview.mask.PorterShapeImageView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
@@ -34,20 +35,15 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -86,6 +82,12 @@ public class AgentDashboardActivity extends AppCompatActivity {
     LinearLayout linUserData;
     @BindView(R.id.img_back_ar)
     ImageView imgBackAr;
+    @BindView(R.id.txt_one)
+    TextView txtOne;
+    @BindView(R.id.txt_two)
+    TextView txtTwo;
+    @BindView(R.id.txt_three)
+    TextView txtThree;
     private SharedPreferences preferences;
     private String string, id, name, email, city, area, phone, image, pass;
     private OrdersAgentResponse ordersResponse;
@@ -125,8 +127,27 @@ public class AgentDashboardActivity extends AppCompatActivity {
 
         if (string.equals("ar")) {
             imgBackAr.setVisibility(View.VISIBLE);
+            Typeface typeface = ResourcesCompat.getFont(this, R.font.hacen_dalal_st_regular);
+
+            txtCity.setTypeface(typeface);
+            txtName.setTypeface(typeface);
+            txtOrders.setTypeface(typeface);
+            txtUserData.setTypeface(typeface);
+            txtOne.setTypeface(typeface);
+            txtTwo.setTypeface(typeface);
+            txtThree.setTypeface(typeface);
+
         } else {
             imgBack.setVisibility(View.VISIBLE);
+            Typeface typeface = ResourcesCompat.getFont(this, R.font.century_gothic_400);
+
+            txtCity.setTypeface(typeface);
+            txtName.setTypeface(typeface);
+            txtOrders.setTypeface(typeface);
+            txtUserData.setTypeface(typeface);
+            txtOne.setTypeface(typeface);
+            txtTwo.setTypeface(typeface);
+            txtThree.setTypeface(typeface);
         }
 
         imgBackAr.setOnClickListener(new View.OnClickListener() {
@@ -141,9 +162,9 @@ public class AgentDashboardActivity extends AppCompatActivity {
 
                 editor.apply();
                 startActivity(new Intent(AgentDashboardActivity.this, MainActivity.class));
-                finish();            }
+                finish();
+            }
         });
-
 
 
         txtOrders.setOnClickListener(new View.OnClickListener() {
@@ -234,36 +255,36 @@ public class AgentDashboardActivity extends AppCompatActivity {
 
                 if (response.isSuccessful()) {
 
-                        for (int i = 0; i < body.size(); i++) {
+                    for (int i = 0; i < body.size(); i++) {
 
 
-                            ordersResponse = new OrdersAgentResponse();
+                        ordersResponse = new OrdersAgentResponse();
 
-                            ordersResponse.setDatee(body.get(i).getDatee());
-                            ordersResponse.setId(body.get(i).getId());
-                            ordersResponse.setAddress(body.get(i).getAddress());
-                            ordersResponse.setArea(body.get(i).getArea());
-                            ordersResponse.setBranch(body.get(i).getBranch());
-                            ordersResponse.setCoponCode(body.get(i).getCoponCode());
-                            ordersResponse.setCity(body.get(i).getCity());
-                            ordersResponse.setDeliverCode(body.get(i).getDeliverCode());
-                            ordersResponse.setIdProduct(body.get(i).getIdProduct());
-                            ordersResponse.setTimee(body.get(i).getTimee());
-                            ordersResponse.setSitelan(body.get(i).getSitelan());
-                            ordersResponse.setSitelon(body.get(i).getSitelon());
-                            ordersResponse.setIdUser(body.get(i).getIdUser());
-                            ordersResponse.setSitelon(body.get(i).getSitelon());
-                            ordersResponse.setSitelan(body.get(i).getSitelan());
+                        ordersResponse.setDatee(body.get(i).getDatee());
+                        ordersResponse.setId(body.get(i).getId());
+                        ordersResponse.setAddress(body.get(i).getAddress());
+                        ordersResponse.setArea(body.get(i).getArea());
+                        ordersResponse.setBranch(body.get(i).getBranch());
+                        ordersResponse.setCoponCode(body.get(i).getCoponCode());
+                        ordersResponse.setCity(body.get(i).getCity());
+                        ordersResponse.setDeliverCode(body.get(i).getDeliverCode());
+                        ordersResponse.setIdProduct(body.get(i).getIdProduct());
+                        ordersResponse.setTimee(body.get(i).getTimee());
+                        ordersResponse.setSitelan(body.get(i).getSitelan());
+                        ordersResponse.setSitelon(body.get(i).getSitelon());
+                        ordersResponse.setIdUser(body.get(i).getIdUser());
+                        ordersResponse.setSitelon(body.get(i).getSitelon());
+                        ordersResponse.setSitelan(body.get(i).getSitelan());
 
-                            ordersResponseArrayList.add(ordersResponse);
+                        ordersResponseArrayList.add(ordersResponse);
 
-                        }
                     }
+                }
 
-                    ordersDashboardAdapter = new AgentDashboardAdapter(AgentDashboardActivity.this);
-                    rcvDashOrers.setAdapter(ordersDashboardAdapter);
-                    ordersDashboardAdapter.setData(ordersResponseArrayList);
-                    ordersDashboardAdapter.notifyDataSetChanged();
+                ordersDashboardAdapter = new AgentDashboardAdapter(AgentDashboardActivity.this);
+                rcvDashOrers.setAdapter(ordersDashboardAdapter);
+                ordersDashboardAdapter.setData(ordersResponseArrayList);
+                ordersDashboardAdapter.notifyDataSetChanged();
 
 
             }
@@ -359,7 +380,6 @@ public class AgentDashboardActivity extends AppCompatActivity {
                                     editor.apply();
 
                                     Glide.with(AgentDashboardActivity.this).load(image).into(imgUser);
-
 
 
                                 }

@@ -3,6 +3,7 @@ package com.compubase.chefbukhari.adapters;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -71,6 +73,13 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
             viewHolder.txt_discount.setText(priceDiscount);
             viewHolder.offer.setText(productsModel.getPrice());
 
+            Typeface typeface = ResourcesCompat.getFont(context, R.font.hacen_dalal_st_regular);
+
+            viewHolder.txt_discount.setTypeface(typeface);
+            viewHolder.offer.setTypeface(typeface);
+            viewHolder.offer_sale.setTypeface(typeface);
+            viewHolder.title.setTypeface(typeface);
+
             String rate = productsModel.getRate();
 
             if (rate.equals("")){
@@ -88,6 +97,13 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
 
             viewHolder.txt_discount.setText(priceDiscount);
             viewHolder.offer.setText(productsModel.getPrice());
+
+            Typeface typeface = ResourcesCompat.getFont(context, R.font.century_gothic_400);
+
+            viewHolder.txt_discount.setTypeface(typeface);
+            viewHolder.offer.setTypeface(typeface);
+            viewHolder.offer_sale.setTypeface(typeface);
+            viewHolder.title.setTypeface(typeface);
 
             String rate = productsModel.getRate();
 

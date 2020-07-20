@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:textColor="@color/black"
+            android:id="@+id/txt_title"
             android:textStyle="bold"
             android:textSize="15sp"
             android:layout_centerHorizontal="true"
@@ -64,6 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/user_name"
+                android:id="@+id/txt_namee"
                 android:textColor="@color/gray_t"
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="40dp"
@@ -88,6 +90,7 @@
                 android:text="@string/mobile_number"
                 android:textColor="@color/gray_t"
                 android:layout_marginStart="40dp"
+                android:id="@+id/txt_numee"
                 android:layout_marginEnd="40dp"
                 android:layout_marginTop="16dp"/>
 
@@ -109,6 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/email_address"
+                android:id="@+id/txt_address"
                 android:textColor="@color/gray_t"
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="40dp"
@@ -133,6 +137,7 @@
                 android:text="@string/password"
                 android:textColor="@color/gray_t"
                 android:layout_marginStart="40dp"
+                android:id="@+id/txt_passss"
                 android:layout_marginEnd="40dp"
                 android:layout_marginTop="16dp"/>
 
@@ -159,6 +164,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/txt_cityyy"
                     android:text="@string/city"
                     android:textColor="@color/gray_t"
                     android:layout_marginStart="40dp"
@@ -168,7 +174,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/district"
-
+                    android:id="@+id/txt_disssss"
                     android:textColor="@color/gray_t"
                     android:layout_marginStart="60dp"
                     android:layout_marginEnd="40dp"/>
@@ -207,6 +213,7 @@
                 android:text="@string/user_image"
                 android:textColor="@color/gray_t"
                 android:layout_marginStart="40dp"
+                android:id="@+id/txt_image"
                 android:layout_marginEnd="40dp"
                 android:layout_marginTop="16dp"/>
 

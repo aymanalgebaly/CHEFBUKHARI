@@ -3,6 +3,7 @@ package com.compubase.chefbukhari.ui.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.compubase.chefbukhari.R;
 import com.yariksoffice.lingver.Lingver;
@@ -27,6 +29,7 @@ public class LanTwoActivity extends AppCompatActivity {
     private String string;
     private SharedPreferences.Editor editor;
     private String lan;
+    private SharedPreferences preferences;
 
     @SuppressLint("CommitPrefEdits")
     @Override
@@ -37,8 +40,24 @@ public class LanTwoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lan_two);
         ButterKnife.bind(this);
 
+        preferences = getSharedPreferences("user",MODE_PRIVATE);
+        string = preferences.getString("lan", "");
 
         editor = getSharedPreferences("user", MODE_PRIVATE).edit();
+
+        if (string.equals("ar")) {
+            Typeface typeface = ResourcesCompat.getFont(this,R.font.hacen_dalal_st_regular);
+
+            lanAr.setTypeface(typeface);
+            lanEn.setTypeface(typeface);
+
+        } else {
+
+            Typeface typeface = ResourcesCompat.getFont(this,R.font.century_gothic_400);
+
+            lanAr.setTypeface(typeface);
+            lanEn.setTypeface(typeface);
+        }
 
 
     }

@@ -3,6 +3,7 @@ package com.compubase.chefbukhari.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -48,6 +50,7 @@ public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.ViewHo
     private ShowConfirmMsgDialog showConfirmMsgDialog;
     private Integer id_userr;
     private Integer id_pro;
+    private String string;
 
     public TopRatedAdapter(List<ProductsModel> productsModels) {
         this.productsResponseList = productsModels;
@@ -67,6 +70,8 @@ public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.ViewHo
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         context = viewGroup.getContext();
         showConfirmMsgDialog = new ShowConfirmMsgDialog(context);
+        preferences = context.getSharedPreferences("user",Context.MODE_PRIVATE);
+        string = preferences.getString("lan", "");
         View view = LayoutInflater.from(context).inflate(R.layout.top_rated_design, viewGroup, false);
         return new ViewHolder(view);
     }
@@ -83,6 +88,25 @@ public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.ViewHo
 
         viewHolder.txt_discount.setText(String.valueOf(productsModel.getPriceDiscount()));
 
+
+        if (string.equals("ar")) {
+
+            Typeface typeface = ResourcesCompat.getFont(context, R.font.hacen_dalal_st_regular);
+
+            viewHolder.txt_discount.setTypeface(typeface);
+//            viewHolder.offer.setTypeface(typeface);
+//            viewHolder.offer_sale.setTypeface(typeface);
+            viewHolder.title.setTypeface(typeface);
+
+        } else {
+
+            Typeface typeface = ResourcesCompat.getFont(context, R.font.century_gothic_400);
+
+            viewHolder.txt_discount.setTypeface(typeface);
+//            viewHolder.offer.setTypeface(typeface);
+//            viewHolder.offer_sale.setTypeface(typeface);
+            viewHolder.title.setTypeface(typeface);
+        }
 
         id_pro = productsResponseList.get(i).getId();
 

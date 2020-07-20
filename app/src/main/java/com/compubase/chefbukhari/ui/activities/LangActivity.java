@@ -2,12 +2,14 @@ package com.compubase.chefbukhari.ui.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.compubase.chefbukhari.R;
 import com.yariksoffice.lingver.Lingver;
@@ -40,6 +42,20 @@ public class LangActivity extends AppCompatActivity {
 
         preferences = getSharedPreferences("user",MODE_PRIVATE);
         string = preferences.getString("lan", "");
+
+        if (string.equals("ar")) {
+            Typeface typeface = ResourcesCompat.getFont(this,R.font.hacen_dalal_st_regular);
+
+            lanAr.setTypeface(typeface);
+            lanEn.setTypeface(typeface);
+
+        } else {
+
+            Typeface typeface = ResourcesCompat.getFont(this,R.font.century_gothic_400);
+
+            lanAr.setTypeface(typeface);
+            lanEn.setTypeface(typeface);
+        }
 
     }
 

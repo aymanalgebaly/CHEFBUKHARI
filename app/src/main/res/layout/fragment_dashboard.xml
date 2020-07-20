@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:textColor="@color/black"
+            android:id="@+id/txt_title"
             android:textStyle="bold"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
@@ -177,6 +178,7 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:id="@+id/txt_one"
                 android:textColor="@color/black"
                 android:text="@string/order_no"/>
 
@@ -186,6 +188,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@string/date"
+                android:id="@+id/txt_two"
                 android:textColor="@color/black"/>
 
             <TextView
@@ -194,6 +197,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:visibility="invisible"
+                android:id="@+id/txt_three"
                 android:text="@string/date"
                 android:textColor="@color/black"/>
 
@@ -228,6 +232,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/user_name"
+            android:id="@+id/txt_nameee"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"/>
@@ -247,6 +252,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/mobile_number"
+            android:id="@+id/txt_numm"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"/>
@@ -267,6 +273,7 @@
             android:layout_height="wrap_content"
             android:text="@string/email_address"
             android:layout_marginEnd="20dp"
+            android:id="@+id/txt_addresss"
             android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"/>
 
@@ -290,6 +297,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/txt_cittyyy"
                 android:text="@string/city"
                 android:textColor="@color/gray_t"
                 android:layout_marginStart="40dp"
@@ -299,7 +307,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/district"
-
+                android:id="@+id/txt_distttt"
                 android:textColor="@color/gray_t"
                 android:layout_marginStart="60dp"
                 android:layout_marginEnd="40dp"/>

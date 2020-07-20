@@ -21,6 +21,7 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="15sp"
+            android:id="@+id/txt_title"
             android:layout_centerHorizontal="true"
             android:text="Cart Shopping"/>
 
@@ -49,6 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
+        android:id="@+id/txt_pick"
         android:text="@string/pickup_branch"
         android:layout_marginTop="50dp"/>
 
@@ -65,6 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:text="@string/delivery_time"
+        android:id="@+id/txt_time"
         android:layout_marginTop="50dp"/>
 
     <TextView

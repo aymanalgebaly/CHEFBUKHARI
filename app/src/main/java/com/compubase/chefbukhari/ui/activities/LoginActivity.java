@@ -2,6 +2,7 @@ package com.compubase.chefbukhari.ui.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.compubase.chefbukhari.R;
 import com.compubase.chefbukhari.data.API;
@@ -49,6 +51,12 @@ public class LoginActivity extends AppCompatActivity {
     ProgressBar progressBar;
     @BindView(R.id.img_back_ar)
     ImageView imgBackAr;
+    @BindView(R.id.txt_singIn)
+    TextView txtSingIn;
+    @BindView(R.id.txt_address)
+    TextView txtAddress;
+    @BindView(R.id.txt_pass)
+    TextView txtPass;
 
 
     private SharedPreferences preferences;
@@ -74,8 +82,20 @@ public class LoginActivity extends AppCompatActivity {
 
         if (string.equals("ar")) {
             imgBackAr.setVisibility(View.VISIBLE);
-        }else {
+            Typeface typeface = ResourcesCompat.getFont(this, R.font.hacen_dalal_st_regular);
+
+            txtForgot.setTypeface(typeface);
+            txtAddress.setTypeface(typeface);
+            txtPass.setTypeface(typeface);
+            txtSingIn.setTypeface(typeface);
+        } else {
             imgBack.setVisibility(View.VISIBLE);
+            Typeface typeface = ResourcesCompat.getFont(this, R.font.century_gothic_400);
+
+            txtForgot.setTypeface(typeface);
+            txtAddress.setTypeface(typeface);
+            txtPass.setTypeface(typeface);
+            txtSingIn.setTypeface(typeface);
         }
 
         imgBackAr.setOnClickListener(new View.OnClickListener() {
@@ -127,7 +147,7 @@ public class LoginActivity extends AppCompatActivity {
                             type = loginModelList.get(0).getType();
 
 
-                            if (type.equals("agent")){
+                            if (type.equals("agent")) {
 
                                 sharedLoginAgent();
 
@@ -135,7 +155,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                 finish();
 
-                            }else {
+                            } else {
 
                                 sharedLogin();
 
@@ -144,8 +164,6 @@ public class LoginActivity extends AppCompatActivity {
                                 finish();
 
                             }
-
-
 
 
                         }

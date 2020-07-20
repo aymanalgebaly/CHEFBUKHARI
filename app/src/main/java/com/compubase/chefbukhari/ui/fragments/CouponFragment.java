@@ -4,6 +4,7 @@ package com.compubase.chefbukhari.ui.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
@@ -33,7 +35,6 @@ import com.compubase.chefbukhari.helpers.SharedPrefManager;
 import com.compubase.chefbukhari.models.CartModel;
 import com.compubase.chefbukhari.ui.activities.HomeActivity;
 import com.compubase.chefbukhari.ui.activities.LoginActivity;
-import com.google.android.gms.wallet.Wallet;
 import com.paytabs.paytabs_sdk.payment.ui.activities.PayTabActivity;
 import com.paytabs.paytabs_sdk.utils.PaymentParams;
 
@@ -86,6 +87,22 @@ public class CouponFragment extends Fragment {
     ImageView imgBackAr;
     @BindView(R.id.progress)
     ProgressBar progress;
+    @BindView(R.id.txt_title)
+    TextView txtTitle;
+    @BindView(R.id.txt_summm)
+    TextView txtSummm;
+    @BindView(R.id.txt_srrr)
+    TextView txtSrrr;
+    @BindView(R.id.txt_dliveryyyy)
+    TextView txtDliveryyyy;
+    @BindView(R.id.txt_srr)
+    TextView txtSrr;
+    @BindView(R.id.txt_tooootal)
+    TextView txtTooootal;
+    @BindView(R.id.txt_sr)
+    TextView txtSr;
+    @BindView(R.id.txt_cridite)
+    TextView txtCridite;
     private Unbinder unbinder;
     private HomeActivity homeActivity;
     private int totalPrice;
@@ -124,10 +141,39 @@ public class CouponFragment extends Fragment {
 
         if (string.equals("ar")) {
             imgBackAr.setVisibility(View.VISIBLE);
+
+            Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.hacen_dalal_st_regular);
+
+            txtCoupon.setTypeface(typeface);
+            txtCridite.setTypeface(typeface);
+            txtDliveryyyy.setTypeface(typeface);
+            txtPay.setTypeface(typeface);
+            txtTitle.setTypeface(typeface);
+            btnCoupon.setTypeface(typeface);
+            txtSr.setTypeface(typeface);
+            txtSrr.setTypeface(typeface);
+            txtSrrr.setTypeface(typeface);
+            txtSummm.setTypeface(typeface);
+            txtTooootal.setTypeface(typeface);
+
         } else {
             imgBack.setVisibility(View.VISIBLE);
-        }
 
+            Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.century_gothic_400);
+
+            txtCoupon.setTypeface(typeface);
+            txtCridite.setTypeface(typeface);
+            txtDliveryyyy.setTypeface(typeface);
+            txtPay.setTypeface(typeface);
+            txtTitle.setTypeface(typeface);
+            btnCoupon.setTypeface(typeface);
+            txtSr.setTypeface(typeface);
+            txtSrr.setTypeface(typeface);
+            txtSrrr.setTypeface(typeface);
+            txtSummm.setTypeface(typeface);
+            txtTooootal.setTypeface(typeface);
+
+        }
         imgBackAr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -182,11 +228,11 @@ public class CouponFragment extends Fragment {
                 functionVolly();
                 break;
             case R.id.lin_payTabs:
-                if (login){
+                if (login) {
 
                     Payment();
 
-                }else {
+                } else {
                     Toast.makeText(homeActivity, R.string.please_sign_in_first, Toast.LENGTH_SHORT).show();
 
                     startActivity(new Intent(homeActivity, LoginActivity.class));
@@ -287,7 +333,7 @@ public class CouponFragment extends Fragment {
                                 }
                             });
 
-                            startActivity(new Intent(homeActivity,HomeActivity.class));
+                            startActivity(new Intent(homeActivity, HomeActivity.class));
                             homeActivity.finish();
 
 //                                if (advSearchRadioBtn.isChecked()) {
@@ -316,7 +362,7 @@ public class CouponFragment extends Fragment {
     }
 
 
-        @Override
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == PaymentParams.PAYMENT_REQUEST_CODE) {

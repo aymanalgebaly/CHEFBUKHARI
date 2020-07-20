@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -20,8 +21,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
-import com.bumptech.glide.Glide;
 import com.compubase.chefbukhari.R;
 import com.compubase.chefbukhari.data.API;
 import com.compubase.chefbukhari.helpers.RetrofitClient;
@@ -79,6 +80,22 @@ public class RegisterActivity extends AppCompatActivity {
     Uri filePath;
     @BindView(R.id.img_back_ar)
     ImageView imgBackAr;
+    @BindView(R.id.txt_title)
+    TextView txtTitle;
+    @BindView(R.id.txt_namee)
+    TextView txtNamee;
+    @BindView(R.id.txt_numee)
+    TextView txtNumee;
+    @BindView(R.id.txt_address)
+    TextView txtAddress;
+    @BindView(R.id.txt_passss)
+    TextView txtPassss;
+    @BindView(R.id.txt_cityyy)
+    TextView txtCityyy;
+    @BindView(R.id.txt_disssss)
+    TextView txtDisssss;
+    @BindView(R.id.txt_image)
+    TextView txtImage;
     private int GALLERY_REQUEST_CODE = 1;
     private String imageURL;
     private StorageReference storageReference;
@@ -121,12 +138,38 @@ public class RegisterActivity extends AppCompatActivity {
             edMobile.setTextDirection(View.TEXT_DIRECTION_RTL);
             edMail.setTextDirection(View.TEXT_DIRECTION_RTL);
             edUsername.setTextDirection(View.TEXT_DIRECTION_RTL);
+
+            Typeface typeface = ResourcesCompat.getFont(this, R.font.hacen_dalal_st_regular);
+
+            txtAddress.setTypeface(typeface);
+            txtCityyy.setTypeface(typeface);
+            txtDisssss.setTypeface(typeface);
+            txtImage.setTypeface(typeface);
+            txtNamee.setTypeface(typeface);
+            txtNumee.setTypeface(typeface);
+            txtPassss.setTypeface(typeface);
+            txtTitle.setTypeface(typeface);
+            btnSignUp.setTypeface(typeface);
+
+
         } else {
             imgBack.setVisibility(View.VISIBLE);
             edPass.setTextDirection(View.TEXT_DIRECTION_LTR);
             edMobile.setTextDirection(View.TEXT_DIRECTION_LTR);
             edMail.setTextDirection(View.TEXT_DIRECTION_LTR);
             edUsername.setTextDirection(View.TEXT_DIRECTION_LTR);
+
+            Typeface typeface = ResourcesCompat.getFont(this, R.font.century_gothic_400);
+
+            txtAddress.setTypeface(typeface);
+            txtCityyy.setTypeface(typeface);
+            txtDisssss.setTypeface(typeface);
+            txtImage.setTypeface(typeface);
+            txtNamee.setTypeface(typeface);
+            txtNumee.setTypeface(typeface);
+            txtPassss.setTypeface(typeface);
+            txtTitle.setTypeface(typeface);
+            btnSignUp.setTypeface(typeface);
         }
 
         imgBackAr.setOnClickListener(new View.OnClickListener() {
@@ -183,18 +226,17 @@ public class RegisterActivity extends AppCompatActivity {
         districListEn.add("Dahrat Laban Area");
 
 
-        if (string.equals("ar")){
+        if (string.equals("ar")) {
 
             SpinnerUtils.SetSpinnerAdapter(this, spCity, cityList, android.R.layout.simple_spinner_item);
             SpinnerUtils.SetSpinnerAdapter(this, spNeighborhood, districList, android.R.layout.simple_spinner_item);
 
 
-        }else {
+        } else {
 
             SpinnerUtils.SetSpinnerAdapter(this, spCity, cityListEn, android.R.layout.simple_spinner_item);
             SpinnerUtils.SetSpinnerAdapter(this, spNeighborhood, districListEn, android.R.layout.simple_spinner_item);
         }
-
 
 
         spCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -211,7 +253,6 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
-
 
 
         spNeighborhood.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
