@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.compubase.chefbukhari.R;
@@ -173,7 +174,7 @@ public class CategorySelectedFragment extends Fragment {
 
     private void setupRecyclerTopRated() {
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(homeActivity, 2);
+        LinearLayoutManager gridLayoutManager = new LinearLayoutManager(homeActivity);
         rcvCategory.setLayoutManager(gridLayoutManager);
         rcvCategory.setNestedScrollingEnabled(false);
 

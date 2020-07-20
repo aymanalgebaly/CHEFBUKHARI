@@ -76,8 +76,8 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
             Typeface typeface = ResourcesCompat.getFont(context, R.font.hacen_dalal_st_regular);
 
             viewHolder.txt_discount.setTypeface(typeface);
-            viewHolder.offer.setTypeface(typeface);
-            viewHolder.offer_sale.setTypeface(typeface);
+//            viewHolder.offer.setTypeface(typeface);
+//            viewHolder.offer_sale.setTypeface(typeface);
             viewHolder.title.setTypeface(typeface);
 
             String rate = productsModel.getRate();
@@ -101,8 +101,8 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
             Typeface typeface = ResourcesCompat.getFont(context, R.font.century_gothic_400);
 
             viewHolder.txt_discount.setTypeface(typeface);
-            viewHolder.offer.setTypeface(typeface);
-            viewHolder.offer_sale.setTypeface(typeface);
+//            viewHolder.offer.setTypeface(typeface);
+//            viewHolder.offer_sale.setTypeface(typeface);
             viewHolder.title.setTypeface(typeface);
 
             String rate = productsModel.getRate();

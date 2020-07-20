@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.compubase.chefbukhari.R;
@@ -184,7 +185,7 @@ public class FavoritesFragment extends Fragment {
 
     private void setupRecyclerTopRated() {
 
-        GridLayoutManager linearLayoutManager = new GridLayoutManager(getActivity(), 2);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         rcvFav.setLayoutManager(linearLayoutManager);
         rcvFav.setNestedScrollingEnabled(false);
 
