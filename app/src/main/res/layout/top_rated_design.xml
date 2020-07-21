@@ -17,9 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/pro_img"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginStart="1dp"/>
+            android:scaleType="fitXY"
+            android:layout_margin="1dp"/>
 
         <com.like.LikeButton
             app:icon_type="heart"
