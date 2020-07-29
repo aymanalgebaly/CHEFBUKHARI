@@ -10,10 +10,12 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +23,12 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import com.compubase.chefbukhari.R;
+import com.compubase.chefbukhari.data.API;
+import com.compubase.chefbukhari.helpers.RetrofitClient;
+import com.compubase.chefbukhari.helpers.SharedPrefManager;
+import com.compubase.chefbukhari.helpers.SpinnerUtils;
 import com.compubase.chefbukhari.models.CartModel;
+import com.compubase.chefbukhari.models.ProductsSizeModel;
 import com.compubase.chefbukhari.ui.activities.HomeActivity;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.Indicators.PagerIndicator;
@@ -39,6 +46,9 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.realm.Realm;
 import io.realm.RealmResults;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -78,6 +88,8 @@ public class SelectedItemFragment extends Fragment {
     TextView txtDetails;
     @BindView(R.id.txt_extra)
     TextView txtExtra;
+    @BindView(R.id.sp_size)
+    Spinner spSize;
     private int id;
     private String titlee, pricee, img1, img2, img3, isFave, priceDiscount, description, category, rate;
     private HomeActivity homeActivity;
@@ -87,6 +99,13 @@ public class SelectedItemFragment extends Fragment {
     private String string;
     private String desEn, titleEn;
     private int nextId;
+
+    List<String> productsSizeModelList = new ArrayList<>();
+    List<Integer> productsSizeModelListInteger = new ArrayList<>();
+    private String pro_size;
+    private Integer priceSize;
+    private Integer integer;
+
 
     public SelectedItemFragment() {
         // Required empty public constructor
@@ -214,9 +233,53 @@ public class SelectedItemFragment extends Fragment {
             }
         }
 
+        productSize();
 
         return view;
 
+    }
+
+    private void productSize() {
+        RetrofitClient.getInstant().create(API.class).productSize(String.valueOf(id)).enqueue(new Callback<List<ProductsSizeModel>>() {
+            @Override
+            public void onResponse(Call<List<ProductsSizeModel>> call, Response<List<ProductsSizeModel>> response) {
+
+                List<ProductsSizeModel> body = response.body();
+                for (int i = 0; i <body.size() ; i++) {
+
+                    productsSizeModelList.add(body.get(i).getSize());
+                    productsSizeModelListInteger.add(Integer.valueOf(body.get(i).getPrice()));
+
+                    SpinnerUtils.SetSpinnerAdapter(homeActivity, spSize, productsSizeModelList, android.R.layout.simple_spinner_item);
+
+                    spSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                            pro_size = productsSizeModelList.get(position);
+
+                            integer = productsSizeModelListInteger.get(position);
+
+
+                            price.setText(String.valueOf(integer));
+
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<ProductsSizeModel>> call, Throwable t) {
+
+            }
+        });
     }
 
     @OnClick({R.id.img_back, R.id.img_min, R.id.img_plus, R.id.btn_add})
@@ -274,7 +337,7 @@ public class SelectedItemFragment extends Fragment {
                 CartModel cartModel = bgRealm.createObject(CartModel.class);
 
                 cartModel.setTitle(title);
-                cartModel.setItem_price(Double.parseDouble(pricee));
+                cartModel.setItem_price(Double.parseDouble(String.valueOf(integer)));
                 cartModel.setImg1(img1);
                 cartModel.setId(id);
                 cartModel.setItem_number(number_item);

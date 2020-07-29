@@ -160,21 +160,51 @@
                     android:textColor="@color/black"
                     android:textSize="22sp"/>
             </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/details"
-                android:textSize="20sp"
-                android:textColor="@color/red"
-                android:id="@+id/txt_details"
-                android:layout_marginStart="20dp"/>
-            <View
-                android:layout_width="70dp"
-                android:layout_height="1dp"
-                android:background="@color/red"
-                android:layout_marginStart="20dp">
 
-            </View>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/details"
+                        android:textSize="20sp"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/red"
+                        android:id="@+id/txt_details"
+                        android:layout_marginStart="20dp"/>
+                    <View
+                        android:layout_width="70dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/red"
+                        android:layout_marginStart="20dp">
+
+                    </View>
+
+
+                </LinearLayout>
+                <Spinner
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/sp_size"
+                    android:layout_marginTop="8dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/stroke_gray_register_field"
+                    android:textColor="@color/gray_t"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="20dp"/>
+            </RelativeLayout>
+
 
             <TextView
                 android:layout_width="match_parent"
