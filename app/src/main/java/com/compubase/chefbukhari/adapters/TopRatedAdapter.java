@@ -301,6 +301,7 @@ public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.ViewHo
                 bundle.putString("rate", rate1);
                 bundle.putString("desEn", desEn);
                 bundle.putString("titleEn", titleEn);
+                bundle.putParcelable("list",productsModel);
 
                 Log.i( "onBindViewHolder: ", String.valueOf(TopRatedAdapter.this.id));
 

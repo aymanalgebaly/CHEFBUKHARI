@@ -1,12 +1,15 @@
 
 package com.compubase.chefbukhari.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
 
-public class ProductsModel extends RealmObject {
+public class ProductsModel extends RealmObject implements Parcelable {
 
     @SerializedName("id")
     @Expose
@@ -50,6 +53,42 @@ public class ProductsModel extends RealmObject {
     @SerializedName("price_discount")
     @Expose
     private String priceDiscount;
+
+    public ProductsModel() {
+    }
+
+    protected ProductsModel(Parcel in) {
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
+        title = in.readString();
+        des = in.readString();
+        price = in.readString();
+        titleEn = in.readString();
+        desEn = in.readString();
+        category = in.readString();
+        rate = in.readString();
+        img1 = in.readString();
+        img2 = in.readString();
+        img3 = in.readString();
+        datee = in.readString();
+        isfav = in.readString();
+        priceDiscount = in.readString();
+    }
+
+    public static final Creator<ProductsModel> CREATOR = new Creator<ProductsModel>() {
+        @Override
+        public ProductsModel createFromParcel(Parcel in) {
+            return new ProductsModel(in);
+        }
+
+        @Override
+        public ProductsModel[] newArray(int size) {
+            return new ProductsModel[size];
+        }
+    };
 
     public String getPriceDiscount() {
         return priceDiscount;
@@ -163,4 +202,31 @@ public class ProductsModel extends RealmObject {
         this.isfav = isfav;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        if (id == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(id);
+        }
+        parcel.writeString(title);
+        parcel.writeString(des);
+        parcel.writeString(price);
+        parcel.writeString(titleEn);
+        parcel.writeString(desEn);
+        parcel.writeString(category);
+        parcel.writeString(rate);
+        parcel.writeString(img1);
+        parcel.writeString(img2);
+        parcel.writeString(img3);
+        parcel.writeString(datee);
+        parcel.writeString(isfav);
+        parcel.writeString(priceDiscount);
+    }
 }

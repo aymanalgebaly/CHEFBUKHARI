@@ -21,6 +21,9 @@ public class ProductsSizeModel {
     @SerializedName("datee")
     @Expose
     private String datee;
+    @SerializedName("size_en")
+    @Expose
+    private String sizeEn;
 
     public Integer getId() {
         return id;
@@ -60,6 +63,14 @@ public class ProductsSizeModel {
 
     public void setDatee(String datee) {
         this.datee = datee;
+    }
+
+    public String getSizeEn() {
+        return sizeEn;
+    }
+
+    public void setSizeEn(String sizeEn) {
+        this.sizeEn = sizeEn;
     }
 
 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -28,6 +29,7 @@ import com.compubase.chefbukhari.helpers.RetrofitClient;
 import com.compubase.chefbukhari.helpers.SharedPrefManager;
 import com.compubase.chefbukhari.helpers.SpinnerUtils;
 import com.compubase.chefbukhari.models.CartModel;
+import com.compubase.chefbukhari.models.ProductsModel;
 import com.compubase.chefbukhari.models.ProductsSizeModel;
 import com.compubase.chefbukhari.ui.activities.HomeActivity;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
@@ -105,6 +107,8 @@ public class SelectedItemFragment extends Fragment {
     private String pro_size;
     private Integer priceSize;
     private Integer integer;
+    private ProductsModel list;
+    private Integer id_pro;
 
 
     public SelectedItemFragment() {
@@ -158,7 +162,11 @@ public class SelectedItemFragment extends Fragment {
 
 
         assert getArguments() != null;
-        id = getArguments().getInt("id");
+
+        list = getArguments().getParcelable("list");
+
+        id_pro = list.getId();
+        this.id = getArguments().getInt("id");
         titlee = getArguments().getString("title");
         category = getArguments().getString("category");
         description = getArguments().getString("des");
@@ -172,7 +180,7 @@ public class SelectedItemFragment extends Fragment {
         desEn = getArguments().getString("desEn");
         titleEn = getArguments().getString("titleEn");
 
-        Log.i("onBindViewHolder: ", String.valueOf(id));
+        Log.i("onBindViewHolder: ", String.valueOf(this.id));
 
 
         List<String> imagsList = new ArrayList<>();
@@ -240,16 +248,25 @@ public class SelectedItemFragment extends Fragment {
     }
 
     private void productSize() {
-        RetrofitClient.getInstant().create(API.class).productSize(String.valueOf(id)).enqueue(new Callback<List<ProductsSizeModel>>() {
+
+        Log.i( "productSize: ", String.valueOf(id_pro));
+        RetrofitClient.getInstant().create(API.class).productSize(String.valueOf(id_pro)).enqueue(new Callback<List<ProductsSizeModel>>() {
             @Override
             public void onResponse(Call<List<ProductsSizeModel>> call, Response<List<ProductsSizeModel>> response) {
 
                 List<ProductsSizeModel> body = response.body();
+                assert body != null;
                 for (int i = 0; i <body.size() ; i++) {
 
-                    productsSizeModelList.add(body.get(i).getSize());
-                    productsSizeModelListInteger.add(Integer.valueOf(body.get(i).getPrice()));
+                    if (string.equals("ar")){
 
+                        productsSizeModelList.add(body.get(i).getSize());
+
+                    }else {
+                        productsSizeModelList.add(body.get(i).getSizeEn());
+
+                    }
+                    productsSizeModelListInteger.add(Integer.valueOf(body.get(i).getPrice()));
                     SpinnerUtils.SetSpinnerAdapter(homeActivity, spSize, productsSizeModelList, android.R.layout.simple_spinner_item);
 
                     spSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -339,7 +356,7 @@ public class SelectedItemFragment extends Fragment {
                 cartModel.setTitle(title);
                 cartModel.setItem_price(Double.parseDouble(String.valueOf(integer)));
                 cartModel.setImg1(img1);
-                cartModel.setId(id);
+                cartModel.setId(id_pro);
                 cartModel.setItem_number(number_item);
                 cartModel.setExtra_request(extraRequests);
 
