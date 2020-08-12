@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -73,7 +74,7 @@ public class SelectedItemFragment extends Fragment {
     @BindView(R.id.ed_extra_request)
     EditText edExtraRequest;
     @BindView(R.id.img_min)
-    ImageView imgMin;
+    RelativeLayout imgMin;
     @BindView(R.id.number)
     TextView number;
     @BindView(R.id.img_plus)

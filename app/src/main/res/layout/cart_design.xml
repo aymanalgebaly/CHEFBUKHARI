@@ -31,13 +31,11 @@
             android:orientation="vertical"
             android:weightSum="3">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                android:weightSum="4">
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/txt_title"
@@ -45,16 +43,19 @@
                     android:layout_height="match_parent"
                     android:layout_marginEnd="16dp"
                     android:padding="2dp"
+                    android:layout_centerVertical="true"
                     android:gravity="bottom|end|center_vertical"
                     android:text=""
+                    android:layout_gravity="center_horizontal"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <RelativeLayout
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="8dp">
 
                     <ImageView
                         android:id="@+id/img_delete"
@@ -62,12 +63,11 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:layout_centerVertical="true"
-                        android:layout_weight="1"
                         android:background="@drawable/delete" />
 
                 </RelativeLayout>
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
