@@ -104,10 +104,10 @@ public class SelectedItemFragment extends Fragment {
     private int nextId;
 
     List<String> productsSizeModelList = new ArrayList<>();
-    List<Integer> productsSizeModelListInteger = new ArrayList<>();
+    List<Double> productsSizeModelListInteger = new ArrayList<>();
     private String pro_size;
     private Integer priceSize;
-    private Integer integer;
+    private double integer;
     private ProductsModel list;
     private Integer id_pro;
 
@@ -267,7 +267,7 @@ public class SelectedItemFragment extends Fragment {
                         productsSizeModelList.add(body.get(i).getSizeEn());
 
                     }
-                    productsSizeModelListInteger.add(Integer.valueOf(body.get(i).getPrice()));
+                    productsSizeModelListInteger.add(Double.valueOf(body.get(i).getPrice()));
                     SpinnerUtils.SetSpinnerAdapter(homeActivity, spSize, productsSizeModelList, android.R.layout.simple_spinner_item);
 
                     spSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -335,6 +335,7 @@ public class SelectedItemFragment extends Fragment {
         String number_item = number.getText().toString();
         String extraRequests = edExtraRequest.getText().toString();
         String title = this.title.getText().toString();
+        String priceeee = price.getText().toString();
 
 //        if (realm.where(CartModel.class).max("no") != null){
 //            nextId = Objects.requireNonNull(realm.where(CartModel.class).max("no")).intValue() + 1;
@@ -355,7 +356,7 @@ public class SelectedItemFragment extends Fragment {
                 CartModel cartModel = bgRealm.createObject(CartModel.class);
 
                 cartModel.setTitle(title);
-                cartModel.setItem_price(Double.parseDouble(String.valueOf(integer)));
+                cartModel.setItem_price(Double.parseDouble(String.valueOf(priceeee)));
                 cartModel.setImg1(img1);
                 cartModel.setId(id_pro);
                 cartModel.setItem_number(number_item);
