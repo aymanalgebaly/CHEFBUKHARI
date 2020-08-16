@@ -101,6 +101,7 @@
     <string name="delivery_code_sent">Delivery Code Sent</string>
     <string name="delivery_code_did_not_sent">Delivery Code Didn\'t Sent</string>
     <string name="arrival">arrival</string>
+    <string name="added_successfully">Added successfully</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

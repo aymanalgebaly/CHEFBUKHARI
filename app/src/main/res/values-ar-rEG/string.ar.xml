@@ -12,8 +12,8 @@
     <string name="password">كلمة المرور</string>
     <string name="city">المدينة</string>
     <string name="neighborhood">الحي</string>
-    <string name="add_a_photo">Add a photo</string>
-    <string name="forgot_password">Forgot password ?</string>
+    <string name="add_a_photo">اضف صوره</string>
+    <string name="forgot_password">نسيت كلمة المرور</string>
     <string name="retrieve_account_information">أستعادة معلومات الحساب</string>
     <string name="retrieve">استعادة</string>
     <string name="title_activity_home">HomeActivity</string>
@@ -40,12 +40,12 @@
     <string name="user_image">الصوره التعريفية</string>
     <string name="district">الحي</string>
     <string name="create_new_user">تسجيل حساب جديد</string>
-    <string name="new_user">New User</string>
+    <string name="new_user">مستخدم جديد</string>
     <string name="forget_password">هل نسيت كلمه المرور ؟</string>
-    <string name="reset">Reset</string>
-    <string name="account_reset">Account reset</string>
+    <string name="reset">إعادة تعيين</string>
+    <string name="account_reset">إعادة الحساب</string>
     <string name="extra_requests">طلبات اضافيه</string>
-    <string name="add">Add</string>
+    <string name="add">اضافه</string>
     <string name="dashboard">الصفحة الشخصية</string>
     <string name="orders">سجل الطلبات</string>
     <string name="favorites">المفضلة</string>
@@ -100,6 +100,8 @@
     <string name="delivery_code_sent">تم ارسال كود التوصيل</string>
     <string name="delivery_code_did_not_sent">لم يتم ارسال كود التوصيل</string>
     <string name="arrival">الوصول</string>
+    <string name="added_successfully">تم الاضافه بنجاح</string>
+
 
 
 </resources>

@@ -368,7 +368,7 @@ public class SelectedItemFragment extends Fragment {
             public void onSuccess() {
                 // Transaction was a success.
 
-                Toast.makeText(getActivity(), "data inserted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.added_successfully, Toast.LENGTH_SHORT).show();
                 Log.i("onBindViewHolder: ", String.valueOf(id));
 
 

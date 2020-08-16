@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -176,6 +177,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolderCart
 
                     viewHolderCart.quntity.setText(String.valueOf(quntity));
 
+
+
                     int finalQuntity = quntity;
                     double finalTotal_price = total_price;
 //                    realm.executeTransactionAsync(new Realm.Transaction() {
@@ -292,7 +295,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolderCart
 
 
     public class ViewHolderCart extends RecyclerView.ViewHolder {
-        ImageView img,img_delete,img_min,img_plus;
+        ImageView img,img_delete;
+
+        LinearLayout img_min,img_plus;
         TextView title, price, quntity;
 
         public ViewHolderCart(@NonNull View itemView) {
@@ -320,7 +325,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolderCart
         return total;
     }
 
-    public void updateNewCard(Realm realm, int finalQuntity, double price, CartModel cartModel) {
+    public void updateNewCard(Realm realm, int finalQuntity, CartModel cartModel) {
 
 
         CartModel cartModel1 = realm.where(CartModel.class)
@@ -329,7 +334,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolderCart
         realm.beginTransaction();
         if (cartModel1 != null) {
             cartModel1.setItem_number(String.valueOf(finalQuntity));
-            cartModel1.setItem_price(price);
             // set the fields here
         }
         realm.commitTransaction();
