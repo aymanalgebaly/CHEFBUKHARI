@@ -111,15 +111,16 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:orientation="vertical"
                         android:id="@+id/btn_min"
+                        android:layout_margin="8dp"
                         android:layout_gravity="center_vertical">
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_marginEnd="16dp"
                             android:background="@drawable/min" />
 
@@ -129,8 +130,8 @@
                     <LinearLayout
                         android:layout_width="70dp"
                         android:layout_height="25dp"
-                        android:layout_marginEnd="16dp"
                         android:background="@color/error"
+                        android:layout_gravity="center_vertical"
                         android:gravity="center">
 
                         <TextView
@@ -147,10 +148,11 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:orientation="vertical"
                         android:id="@+id/btn_plus"
+                        android:layout_margin="8dp"
                         android:layout_gravity="center_vertical">
 
                         <ImageView
