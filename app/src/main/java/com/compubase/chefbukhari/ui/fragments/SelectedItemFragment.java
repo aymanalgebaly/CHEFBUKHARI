@@ -355,7 +355,12 @@ public class SelectedItemFragment extends Fragment {
 
                 CartModel cartModel = bgRealm.createObject(CartModel.class);
 
-                cartModel.setTitle(title);
+                if (string.equals("ar")){
+                    cartModel.setTitle(title);
+
+                }else {
+                    cartModel.setTitle(titleEn);
+                }
                 cartModel.setItem_price(Double.parseDouble(String.valueOf(priceeee)));
                 cartModel.setImg1(img1);
                 cartModel.setId(id_pro);
