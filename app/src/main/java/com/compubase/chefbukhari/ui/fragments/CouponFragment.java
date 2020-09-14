@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
@@ -40,6 +42,7 @@ import com.paytabs.paytabs_sdk.utils.PaymentParams;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -113,6 +116,10 @@ public class CouponFragment extends Fragment {
     private String address;
     private float lon, lat;
     private boolean login;
+    private StringBuilder productsNames;
+    private StringBuilder append;
+    private String joined;
+    private String s;
 
     public CouponFragment() {
         // Required empty public constructor
@@ -181,6 +188,7 @@ public class CouponFragment extends Fragment {
             }
         });
 
+
         SharedPrefManager sharedPrefManager = SharedPrefManager.getInstance(homeActivity);
         totalPrice = sharedPrefManager.getTotalPrice();
 
@@ -204,6 +212,9 @@ public class CouponFragment extends Fragment {
 
         lat = SharedPrefManager.getInstance(homeActivity).getLat();
         lon = SharedPrefManager.getInstance(homeActivity).getLon();
+
+        productsNames = new StringBuilder();
+
 
         return view;
     }
@@ -362,6 +373,18 @@ public class CouponFragment extends Fragment {
     }
 
 
+
+    public String removeLastChar(String s) {
+        if (s == null || s.length() == 0) {
+            return s;
+        }
+        return s.substring(0, s.length()-1);
+
+    }
+
+
+
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -399,6 +422,9 @@ public class CouponFragment extends Fragment {
 
     private void Payment() {
 
+        RealmResults<CartModel> all = realm.where(CartModel.class).findAll();
+
+
         Intent in = new Intent(getActivity(), PayTabActivity.class);
         in.putExtra(PaymentParams.MERCHANT_EMAIL, "chefbukhariSA@gmail.com"); //this a demo account for testing the sdk
         in.putExtra(PaymentParams.SECRET_KEY, "vjfINYY6BIPDKpErbi9f1ehkv6VON40jnf2bd0hPI7stw7UIp4XrieMNkIC8MCs9Sul6uCVdKoHgvBZVFWnYb9MvSoEE16OTB9Z6");//Add your Secret Key Here
@@ -409,22 +435,34 @@ public class CouponFragment extends Fragment {
         in.putExtra(PaymentParams.CURRENCY_CODE, "SAR");
         in.putExtra(PaymentParams.CUSTOMER_PHONE_NUMBER, "009660554679555");
         in.putExtra(PaymentParams.CUSTOMER_EMAIL, "chefbukhariSA@gmail.com");
-        in.putExtra(PaymentParams.ORDER_ID, "123456");
-        in.putExtra(PaymentParams.PRODUCT_NAME, "Product 1, Product 2");
+        in.putExtra(PaymentParams.ORDER_ID, getSaltString());
+
+        for (int i = 0; i <all.size() ; i++) {
+
+            assert all.get(i) != null;
+
+            StringBuilder append = productsNames.append(all.get(i).getTitle()).append(",");
+
+            s = String.valueOf(append);
+
+            removeLastChar(s);
+
+        }
+        in.putExtra(PaymentParams.PRODUCT_NAME, s);
 
 //Billing Address
-        in.putExtra(PaymentParams.ADDRESS_BILLING, "Flat 1,Building 123, Road 2345");
+        in.putExtra(PaymentParams.ADDRESS_BILLING, "riyadh");
         in.putExtra(PaymentParams.CITY_BILLING, "riyadh");
         in.putExtra(PaymentParams.STATE_BILLING, "riyadh");
-        in.putExtra(PaymentParams.COUNTRY_BILLING, "SAR");
-        in.putExtra(PaymentParams.POSTAL_CODE_BILLING, "21577"); //Put Country Phone code if Postal code not available '00973'
+        in.putExtra(PaymentParams.COUNTRY_BILLING, "SAU");
+        in.putExtra(PaymentParams.POSTAL_CODE_BILLING, "00966"); //Put Country Phone code if Postal code not available '00973'
 
 //Shipping Address
-        in.putExtra(PaymentParams.ADDRESS_SHIPPING, "Flat 1,Building 123, Road 2345");
+        in.putExtra(PaymentParams.ADDRESS_SHIPPING, address);
         in.putExtra(PaymentParams.CITY_SHIPPING, "riyadh");
         in.putExtra(PaymentParams.STATE_SHIPPING, "riyadh");
-        in.putExtra(PaymentParams.COUNTRY_SHIPPING, "SAR");
-        in.putExtra(PaymentParams.POSTAL_CODE_SHIPPING, "21577"); //Put Country Phone code if Postal code not available '00973'
+        in.putExtra(PaymentParams.COUNTRY_SHIPPING, "SAU");
+        in.putExtra(PaymentParams.POSTAL_CODE_SHIPPING, "00966"); //Put Country Phone code if Postal code not available '00973'
 
 //Payment Page Style
         in.putExtra(PaymentParams.PAY_BUTTON_COLOR, "#A73338");
@@ -433,6 +471,19 @@ public class CouponFragment extends Fragment {
 //Tokenization
         in.putExtra(PaymentParams.IS_TOKENIZATION, true);
         startActivityForResult(in, PaymentParams.PAYMENT_REQUEST_CODE);
+
+    }
+
+    protected String getSaltString() {
+        String SALTCHARS = "1234567890";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < 4) { // length of the random string.
+            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        String saltStr = salt.toString();
+        return saltStr;
 
     }
 }
