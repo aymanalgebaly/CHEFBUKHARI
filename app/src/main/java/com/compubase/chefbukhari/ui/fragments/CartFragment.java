@@ -95,6 +95,8 @@ public class CartFragment extends Fragment {
 
             Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.hacen_dalal_st_regular);
 
+            txtTitle.setText(R.string.cart_shopping);
+
             btnCheckOut.setTypeface(typeface);
             btnKeepShopping.setTypeface(typeface);
             txtTitle.setTypeface(typeface);
@@ -103,6 +105,8 @@ public class CartFragment extends Fragment {
             imgBack.setVisibility(View.VISIBLE);
 
             Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.century_gothic_400);
+
+            txtTitle.setText(R.string.cart_shopping);
 
             btnCheckOut.setTypeface(typeface);
             btnKeepShopping.setTypeface(typeface);
@@ -210,5 +214,29 @@ public class CartFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         unbinder.unbind();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (string.equals("ar")) {
+            imgBackAr.setVisibility(View.VISIBLE);
+
+            Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.hacen_dalal_st_regular);
+
+            btnCheckOut.setTypeface(typeface);
+            btnKeepShopping.setTypeface(typeface);
+            txtTitle.setTypeface(typeface);
+
+        } else {
+            imgBack.setVisibility(View.VISIBLE);
+
+            Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.century_gothic_400);
+
+            btnCheckOut.setTypeface(typeface);
+            btnKeepShopping.setTypeface(typeface);
+            txtTitle.setTypeface(typeface);
+        }
     }
 }

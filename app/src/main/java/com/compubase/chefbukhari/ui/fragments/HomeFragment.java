@@ -332,7 +332,6 @@ public class HomeFragment extends Fragment {
 
                 Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
 
-                Log.i("onFailure: ", t.getMessage());
             }
         });
     }

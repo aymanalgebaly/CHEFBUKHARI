@@ -96,6 +96,8 @@ public class RegisterActivity extends AppCompatActivity {
     TextView txtDisssss;
     @BindView(R.id.txt_image)
     TextView txtImage;
+
+
     private int GALLERY_REQUEST_CODE = 1;
     private String imageURL;
     private StorageReference storageReference;

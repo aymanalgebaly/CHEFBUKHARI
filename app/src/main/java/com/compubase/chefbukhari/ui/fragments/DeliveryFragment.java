@@ -119,4 +119,30 @@ public class DeliveryFragment extends Fragment {
                 break;
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (string.equals("ar")) {
+            imgBackAr.setVisibility(View.VISIBLE);
+
+            Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.hacen_dalal_st_regular);
+
+            txtClient.setTypeface(typeface);
+            txtMethod.setTypeface(typeface);
+            txtPick.setTypeface(typeface);
+            txtTitle.setTypeface(typeface);
+
+        } else {
+            imgBack.setVisibility(View.VISIBLE);
+
+            Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.century_gothic_400);
+
+            txtClient.setTypeface(typeface);
+            txtMethod.setTypeface(typeface);
+            txtPick.setTypeface(typeface);
+            txtTitle.setTypeface(typeface);
+        }
+    }
 }

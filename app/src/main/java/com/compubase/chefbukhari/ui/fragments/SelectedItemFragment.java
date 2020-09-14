@@ -379,6 +379,19 @@ public class SelectedItemFragment extends Fragment {
 
                 RealmResults<CartModel> all = realm.where(CartModel.class).findAll();
                 homeActivity.cartBadge.setText(String.valueOf(all.size()));
+
+
+                RealmResults<CartModel> alll = realm.where(CartModel.class).findAll();
+
+                for (int j = 0; j <alll.size() ; j++) {
+
+                    assert alll.get(j) != null;
+
+                    Log.i( "onSuccess: ",alll.get(j).getItem_number());
+
+                }
+
+
             }
         }, new Realm.Transaction.OnError() {
             @Override

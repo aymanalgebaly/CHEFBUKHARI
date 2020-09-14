@@ -20,6 +20,7 @@ import butterknife.OnClick;
 
 public class LangActivity extends AppCompatActivity {
 
+
     @BindView(R.id.lan_en)
     Button lanEn;
     @BindView(R.id.lan_ar)
@@ -40,18 +41,18 @@ public class LangActivity extends AppCompatActivity {
         editor = getSharedPreferences("user", MODE_PRIVATE).edit();
 
 
-        preferences = getSharedPreferences("user",MODE_PRIVATE);
+        preferences = getSharedPreferences("user", MODE_PRIVATE);
         string = preferences.getString("lan", "");
 
         if (string.equals("ar")) {
-            Typeface typeface = ResourcesCompat.getFont(this,R.font.hacen_dalal_st_regular);
+            Typeface typeface = ResourcesCompat.getFont(this, R.font.hacen_dalal_st_regular);
 
             lanAr.setTypeface(typeface);
             lanEn.setTypeface(typeface);
 
         } else {
 
-            Typeface typeface = ResourcesCompat.getFont(this,R.font.century_gothic_400);
+            Typeface typeface = ResourcesCompat.getFont(this, R.font.century_gothic_400);
 
             lanAr.setTypeface(typeface);
             lanEn.setTypeface(typeface);
@@ -76,7 +77,7 @@ public class LangActivity extends AppCompatActivity {
 
                 lan = "ar";
 
-                Lingver.getInstance().setLocale(LangActivity.this,"ar");
+                Lingver.getInstance().setLocale(LangActivity.this, "ar");
                 editor.putString("lan", lan);
 
                 editor.apply();

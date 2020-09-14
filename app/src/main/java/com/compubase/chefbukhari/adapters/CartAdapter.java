@@ -37,7 +37,6 @@ import io.realm.RealmResults;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolderCart> {
 
-    private TextView tvTotall;
     private Context context;
     private Realm realm;
     private List<CartModel> cartModels;
@@ -45,28 +44,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolderCart
     private SharedPreferences preferences;
     private List<Double> totalPriceList = new ArrayList<>();
     private double totallPrice;
-    private int nextId;
 
     public CartAdapter(Context context) {
         this.context = context;
     }
-
-    public CartAdapter(List<CartModel> productsModelList, TextView totalPriceCart) {
-        this.tvTotall = totalPriceCart;
-        this.cartModels = productsModelList;
-
-        if (productsModelList.size() > 0)
-            for (int i = 0; i < cartModels.size(); i++) {
-                totalPriceList.add(Double.parseDouble(String.valueOf(cartModels.get(i).getPrice())));
-            }
-
-
-    }
-
-    public CartAdapter(List<CartModel> productsModelList) {
-        cartModels = productsModelList;
-    }
-
 
     public void setData(ArrayList<CartModel> cartModelArrayList, double totalPrice) {
         this.cartModels = cartModelArrayList;
@@ -77,10 +58,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolderCart
                 totalPriceList.add(Double.parseDouble(String.valueOf(cartModels.get(i).getItem_price())));
             }
 
-        Log.i( "setData: ", String.valueOf(cartModelArrayList.size()));
     }
-
-
 
     @NonNull
     @Override
@@ -130,13 +108,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolderCart
         Glide.with(context).load(cartModel.getImg1()).placeholder(R.drawable.inside_app_logo).into(viewHolderCart.img);
 
 
-        RealmResults<CartModel> all = realm.where(CartModel.class).findAll();
-
-        for (int j = 0; j <all.size() ; j++) {
-
-            viewHolderCart.quntity.setText(String.valueOf(all.get(j).getItem_number()));
-        }
-
         int quntity = Integer.parseInt((String) viewHolderCart.quntity.getText());
         double total = Double.parseDouble((String) viewHolderCart.price.getText());
 
@@ -146,11 +117,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolderCart
 
         totallPrice = getTotalPrice();
 
-        Log.i( "onClick: ", String.valueOf(totallPrice));
 
         sharedPrefManager.saveTotalPrice((int) totallPrice);
 
-        viewHolderCart.quntity.setText(String.valueOf(quntity));
 
         viewHolderCart.img_min.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,46 +139,17 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolderCart
 
                     totallPrice = getTotalPrice();
 
-                    Log.i( "onClick: ", String.valueOf(totallPrice));
 
                     sharedPrefManager.saveTotalPrice((int) totallPrice);
 
 
                     viewHolderCart.quntity.setText(String.valueOf(quntity));
 
-
-
-                    int finalQuntity = quntity;
-                    double finalTotal_price = total_price;
-//                    realm.executeTransactionAsync(new Realm.Transaction() {
-//                        @Override
-//                        public void execute(Realm bgRealm) {
-//                            CartModel cartModel = bgRealm.createObject(CartModel.class);
-//
-//                            cartModel.setItem_number(String.valueOf(finalQuntity));
-//                            cartModel.setItem_price(finalTotal_price);
-//
-//
-//                        }
-//                    }, new Realm.Transaction.OnSuccess() {
-//                        @Override
-//                        public void onSuccess() {
-//                            // Transaction was a success.
-//
-//                        }
-//                    }, new Realm.Transaction.OnError() {
-//                        @Override
-//                        public void onError(Throwable error) {
-//                            // Transaction failed and was automatically canceled.
-//
-//                        }
-//                    });
                 }
 
 
             }
         });
-
 
         viewHolderCart.img_plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -228,39 +168,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolderCart
 
                 sharedPrefManager.saveTotalPrice((int) totallPrice);
 
-                Log.i( "onClick: ", String.valueOf(totallPrice));
 
                 viewHolderCart.quntity.setText(String.valueOf(quntity));
 
-                int finalQuntity = quntity;
-
-
-//                cartModel.setItem_price(price);
-//                cartModel.setItem_number(String.valueOf(finalQuntity));
-
-//                updateNewCard(realm,finalQuntity,price,cartModel);
-//                realm.executeTransactionAsync(new Realm.Transaction() {
-//                        @Override
-//                        public void execute(Realm bgRealm) {
-//                            CartModel cartModel = bgRealm.createObject(CartModel.class);
-//
-//                            cartModel.setItem_number(String.valueOf(finalQuntity));
-//                            cartModel.setItem_price(price);
-//
-//                        }
-//                    }, new Realm.Transaction.OnSuccess() {
-//                        @Override
-//                        public void onSuccess() {
-//                            // Transaction was a success.
-//
-//                        }
-//                    }, new Realm.Transaction.OnError() {
-//                        @Override
-//                        public void onError(Throwable error) {
-//                            // Transaction failed and was automatically canceled.
-//
-//                        }
-//                    });
                 }
         });
 
@@ -325,41 +235,4 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolderCart
         return total;
     }
 
-    public void updateNewCard(Realm realm, int finalQuntity, CartModel cartModel) {
-
-
-        CartModel cartModel1 = realm.where(CartModel.class)
-                .equalTo("no", cartModel.getNo())
-                .findFirst();
-        realm.beginTransaction();
-        if (cartModel1 != null) {
-            cartModel1.setItem_number(String.valueOf(finalQuntity));
-            // set the fields here
-        }
-        realm.commitTransaction();
-
-
-//        if (realm.where(CartModel.class).max("no") != null){
-//            nextId = Objects.requireNonNull(realm.where(CartModel.class).max("no")).intValue() + 1;
-//        }
-//
-//
-////        realm.beginTransaction();
-//        realm.beginTransaction();
-//        cartModel.setNo(nextId);
-//        cartModel.setItem_price(price);
-//        cartModel.setItem_number(String.valueOf(finalQuntity));
-//        realm.copyToRealmOrUpdate(cartModel);
-//        realm.commitTransaction();
-
-
-//        CartModel toEdit = realm.where(CartModel.class)
-//                .equalTo("no", cartModel.getNo()).findFirst();
-//        assert toEdit != null;
-//        toEdit.setItem_number(String.valueOf(finalQuntity));
-//        toEdit.setItem_price(price);
-//        realm.copyToRealmOrUpdate(cartModel);
-//
-//        realm.commitTransaction();
-    }
 }

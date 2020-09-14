@@ -64,11 +64,14 @@ public class LoginActivity extends AppCompatActivity {
     private int id;
     private String string;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         preferences = getSharedPreferences("user", MODE_PRIVATE);
@@ -169,6 +172,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
 
                     } catch (Exception e) {
+                        progressBar.setVisibility(View.GONE);
                         Toast.makeText(LoginActivity.this, "خطأ في البريد الالكتروني او كلمة المرور", Toast.LENGTH_SHORT).show();
                     }
 
@@ -227,6 +231,7 @@ public class LoginActivity extends AppCompatActivity {
                 onBackPressed();
                 break;
             case R.id.txt_forgot:
+                startActivity(new Intent(LoginActivity.this,ForgotPassActivity.class));
                 break;
             case R.id.btn_signIn:
                 loginValidate();

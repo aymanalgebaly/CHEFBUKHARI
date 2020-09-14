@@ -402,5 +402,30 @@ public class ClientLocationFragment extends Fragment implements OnMapReadyCallba
     public void onResume() {
         super.onResume();
         getCurrentLocation();
+
+        if (string.equals("ar")) {
+            imgBackAr.setVisibility(View.VISIBLE);
+
+            Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.hacen_dalal_st_regular);
+
+            txtCityyyy.setTypeface(typeface);
+            txtLocationnnnn.setTypeface(typeface);
+            txtDist.setTypeface(typeface);
+            txtMap.setTypeface(typeface);
+            txtTitle.setTypeface(typeface);
+            btnCheckOut.setTypeface(typeface);
+
+        } else {
+            imgBack.setVisibility(View.VISIBLE);
+
+            Typeface typeface = ResourcesCompat.getFont(homeActivity, R.font.century_gothic_400);
+
+            txtCityyyy.setTypeface(typeface);
+            txtLocationnnnn.setTypeface(typeface);
+            txtDist.setTypeface(typeface);
+            txtMap.setTypeface(typeface);
+            txtTitle.setTypeface(typeface);
+            btnCheckOut.setTypeface(typeface);
+        }
     }
 }

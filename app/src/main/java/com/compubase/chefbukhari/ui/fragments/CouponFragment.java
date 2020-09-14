@@ -224,8 +224,8 @@ public class CouponFragment extends Fragment {
                 useCoupon();
                 break;
             case R.id.lin_googlePay:
-                googlePay();
-                functionVolly();
+//                googlePay();
+//                functionVolly();
                 break;
             case R.id.lin_payTabs:
                 if (login) {
@@ -402,7 +402,7 @@ public class CouponFragment extends Fragment {
         Intent in = new Intent(getActivity(), PayTabActivity.class);
         in.putExtra(PaymentParams.MERCHANT_EMAIL, "chefbukhariSA@gmail.com"); //this a demo account for testing the sdk
         in.putExtra(PaymentParams.SECRET_KEY, "vjfINYY6BIPDKpErbi9f1ehkv6VON40jnf2bd0hPI7stw7UIp4XrieMNkIC8MCs9Sul6uCVdKoHgvBZVFWnYb9MvSoEE16OTB9Z6");//Add your Secret Key Here
-        in.putExtra(PaymentParams.LANGUAGE, PaymentParams.ENGLISH);
+        in.putExtra(PaymentParams.LANGUAGE, string);
         in.putExtra(PaymentParams.TRANSACTION_TITLE, "Payment");
         in.putExtra(PaymentParams.AMOUNT, Double.valueOf(totalPrice));
 
